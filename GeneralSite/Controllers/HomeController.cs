@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GeneralSite.Models;
 using Microsoft.Extensions.Configuration;
+using EntityModel.Entity;
+using EntityModel;
 
 namespace GeneralSite.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly GeneralContext _context;
+
+        public HomeController(GeneralContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-			var builder = new ConfigurationBuilder()
-                .AddJsonFile("~/GeneralSite/appsettings.json", optional: false, reloadOnChange: true);
+            var entry = new Category() { Name = "Nguyễn", Description = "Văn Trỗi" };
+            _context.Add(entry);
+            _context.SaveChanges();
 
-			var configuration = builder.Build();
-
-			string connectionString = configuration.GetConnectionString("DefaultConnection");
-
-			// Create an employee instance and save the entity to the database
-            var entry = new Category() { Name = "John", Description = "Winston" };
-
-			using (var context = GeneralContextFactory.Create(connectionString))
-			{
-				context.Add(entry);
-				context.SaveChanges();
-			}
+            ViewBag.Categories = _context.Category.ToList();
             return View();
         }
 

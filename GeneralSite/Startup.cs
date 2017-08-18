@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.EntityFrameworkCore;
+using MySQL.Data.EntityFrameworkCore.Extensions;
+using EntityModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeneralSite
 {
@@ -13,6 +16,10 @@ namespace GeneralSite
     {
         public Startup(IConfiguration configuration)
         {
+            //var builder = new ConfigurationBuilder()
+            //    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            //configuration = builder.Build();
             Configuration = configuration;
         }
 
@@ -21,6 +28,10 @@ namespace GeneralSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //var optionsBuilder = new DbContextOptionsBuilder<GeneralContext>();
+            //optionsBuilder.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+            //services.AddDbContext<GeneralContext>(optionsBuilder);
+            services.AddDbContext<GeneralContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
         }
 

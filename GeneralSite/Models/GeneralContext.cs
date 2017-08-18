@@ -16,7 +16,7 @@ namespace GeneralSite.Models
 		: base(options)
 		{ }
 
-		public DbSet<Category> Categories { get; set; }
+		public DbSet<Category> Category { get; set; }
 	}
 
 	/// <summary>
@@ -35,23 +35,5 @@ namespace GeneralSite.Models
 
 			return context;
 		}
-	}
-
-	/// <summary>
-	/// A basic class for an Employee
-	/// </summary>
-	public class Category
-	{
-		public Category()
-		{
-		}
-
-		public int Id { get; set; }
-
-		[MaxLength(255)]
-		public string Name { get; set; }
-
-		[MaxLength(255)]
-		public string Description { get; set; }
 	}
 }
