@@ -9,6 +9,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Release\PublishOutput\appsettings.Development.json" />
+    <Content Include="bin\Release\PublishOutput\appsettings.json" />
+    <Content Include="bin\Release\PublishOutput\bower.json" />
+    <Content Include="bin\Release\PublishOutput\bundleconfig.json" />
+    <Content Include="bin\Release\PublishOutput\GeneralSite.deps.json" />
+    <Content Include="bin\Release\PublishOutput\GeneralSite.runtimeconfig.json" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\css\site.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\css\site.min.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\favicon.ico" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\.bower.json" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation-unobtrusive\.bower.json" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\.bower.json" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\jquery\.bower.json" />
+    <Content Include="bin\Release\PublishOutput\wwwroot\lib\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.8-dmr" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10056" />
@@ -16,6 +40,48 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Release\PublishOutput\EntityModel.dll" />
+    <None Include="bin\Release\PublishOutput\EntityModel.pdb" />
+    <None Include="bin\Release\PublishOutput\GeneralSite.dll" />
+    <None Include="bin\Release\PublishOutput\GeneralSite.pdb" />
+    <None Include="bin\Release\PublishOutput\GeneralSite.PrecompiledViews.dll" />
+    <None Include="bin\Release\PublishOutput\GeneralSite.PrecompiledViews.pdb" />
+    <None Include="bin\Release\PublishOutput\Google.Protobuf.dll" />
+    <None Include="bin\Release\PublishOutput\MySql.Data.dll" />
+    <None Include="bin\Release\PublishOutput\MySql.Data.EntityFrameworkCore.dll" />
+    <None Include="bin\Release\PublishOutput\MySqlConnector.dll" />
+    <None Include="bin\Release\PublishOutput\Pomelo.EntityFrameworkCore.MySql.dll" />
+    <None Include="bin\Release\PublishOutput\Pomelo.JsonObject.dll" />
+    <None Include="bin\Release\PublishOutput\web.config" />
+    <None Include="bin\Release\PublishOutput\wwwroot\images\banner1.svg" />
+    <None Include="bin\Release\PublishOutput\wwwroot\images\banner2.svg" />
+    <None Include="bin\Release\PublishOutput\wwwroot\images\banner3.svg" />
+    <None Include="bin\Release\PublishOutput\wwwroot\images\banner4.svg" />
+    <None Include="bin\Release\PublishOutput\wwwroot\js\site.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\js\site.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\dist\js\npm.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="bin\Release\PublishOutput\wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
   <ItemGroup>
