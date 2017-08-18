@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GeneralSite.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace GeneralSite.Controllers
 {
@@ -12,6 +13,21 @@ namespace GeneralSite.Controllers
     {
         public IActionResult Index()
         {
+			var builder = new ConfigurationBuilder()
+                .AddJsonFile("~/GeneralSite/appsettings.json", optional: false, reloadOnChange: true);
+
+			var configuration = builder.Build();
+
+			string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+			// Create an employee instance and save the entity to the database
+            var entry = new Category() { Name = "John", Description = "Winston" };
+
+			using (var context = GeneralContextFactory.Create(connectionString))
+			{
+				context.Add(entry);
+				context.SaveChanges();
+			}
             return View();
         }
 
