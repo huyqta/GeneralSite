@@ -6,6 +6,9 @@
 
   <ItemGroup>
     <Compile Remove="Models\GeneralContext.cs" />
+    <Compile Remove="Data\GeneralContext.cs" />
+    <Compile Remove="Data\Entity\Category.cs" />
+    <Compile Remove="Data\Entity\Product.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,4 +93,7 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EntityModel\EntityModel.csproj" />
+  </ItemGroup>
 </Project>

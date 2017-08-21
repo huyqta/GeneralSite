@@ -4,7 +4,7 @@ using MySQL.Data.EntityFrameworkCore.Extensions;
 using System.ComponentModel.DataAnnotations;
 using EntityModel.Entity;
 
-namespace EntityModel
+namespace AdminSite.Models
 {
     using Microsoft.EntityFrameworkCore;
 

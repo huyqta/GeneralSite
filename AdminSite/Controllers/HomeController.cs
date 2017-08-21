@@ -2,30 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using GeneralSite.Models;
-using Microsoft.Extensions.Configuration;
-using EntityModel.Entity;
-using EntityModel;
+using AdminSite.Models;
 
-namespace GeneralSite.Controllers
+namespace AdminSite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly GeneralContext _context;
-
-        public HomeController(GeneralContext context)
-        {
-            _context = context;
-        }
-
         public IActionResult Index()
         {
-            var entry = new Category() { Name = "Nguyễn", Description = "Văn Trỗi" };
-            //_context.Add(entry);
-            _context.SaveChanges();
-
-            ViewBag.Categories = _context.Category.ToList();
             return View();
         }
 
