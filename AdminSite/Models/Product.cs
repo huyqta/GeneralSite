@@ -7,10 +7,6 @@ namespace AdminSite.Models
 {
     public class Product
     {
-        public Product()
-        {
-        }
-
         public int Id { get; set; }
 
         public int CategoryId { get; set; }

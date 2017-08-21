@@ -13,6 +13,20 @@ namespace AdminSite.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            Models.ListItemModel listItems = new Models.ListItemModel();
+            listItems.ListItemDisplay = new List<Models.ItemModel>();
+
+            Models.ItemModel item = new Models.ItemModel();
+            item.ValueMember = 0;
+            item.DisplayName = "DisplayName";
+            listItems.ListItemDisplay.Add(item);
+
+            return View("~/Views/Shared/Index.cshtml", listItems);
+        }
+
+        public IActionResult Create()
+        {
+
             return View();
         }
     }
