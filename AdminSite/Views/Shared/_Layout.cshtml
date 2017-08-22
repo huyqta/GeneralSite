@@ -31,15 +31,37 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
                 </ul>
                 @*@await Html.PartialAsync("_LoginPartial")*@
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <br />
+        @if (!string.IsNullOrEmpty(ViewBag.SessionLogin))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.Partial("~/Views/Shared/_LeftMenu.cshtml")
+                </div>
+                <div class="col-md-9">
+                    <div>CONTENT</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+            </div>
+        }
         <hr />
         <footer>
             <p>&copy; 2017 - AdminSite</p>
