@@ -40,7 +40,7 @@
     </div>
     <div class="container body-content">
         <br />
-        @if (!string.IsNullOrEmpty(ViewBag.SessionLogin))
+        @*@if (!string.IsNullOrEmpty(ViewBag.SessionLogin))
         {
             <div class="row">
                 <div class="col-md-3">
@@ -59,9 +59,11 @@
         else
         {
             <div>
+                @RenderBody()
                 @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
             </div>
-        }
+        }*@
+        @RenderBody()
         <hr />
         <footer>
             <p>&copy; 2017 - AdminSite</p>

@@ -22,23 +22,24 @@ namespace AdminSite.Controllers
             _context = context;
         }
 
-        public IActionResult Index(AccountModel model)
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(AccountModel model)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(AuthenticationHelper.SessionLogin)))
             {
-                if (!string.IsNullOrEmpty(model.Username) && !string.IsNullOrEmpty(model.Password))
+                if (AuthenticationHelper.CheckAuthentication(_context, model))
                 {
-
-                    string md5Hash = AuthenticationHelper.getMd5Hash(model.Password);
-
-                    if (_context.Account.Any(m => m.Username == model.Username && m.Password == md5Hash))
-                    {
-                        HttpContext.Session.SetString(AuthenticationHelper.SessionLogin, model.Username);
-                    }
+                    HttpContext.Session.SetString(AuthenticationHelper.SessionLogin, model.Username);
                 }
             }
             ViewBag.SessionLogin = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
-            return View();
+            var LoginInformation = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
+            return RedirectToAction("Index", "Home", LoginInformation);
         }
 
         public IActionResult About()

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AdminSite.Models;
+using EntityModel;
+using EntityModel.Entity;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -33,7 +37,22 @@ namespace AdminSite.Helpers
             // Return the hexadecimal string.
             return sBuilder.ToString();
         }
+
+        public static bool CheckAuthentication(GeneralContext _context, AccountModel account)
+        {
+            if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Password))
+            {
+
+                string md5Hash = AuthenticationHelper.getMd5Hash(account.Password);
+
+                if (_context.Account.Any(m => m.Username == account.Username && m.Password == md5Hash))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
-    
+
 }
