@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralSite", "GeneralSite\GeneralSite.csproj", "{B52A0D0A-9DB6-4469-AB70-711167D33C85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralSite", "GeneralSite\GeneralSite.csproj", "{B52A0D0A-9DB6-4469-AB70-711167D33C85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityModel", "EntityModel\EntityModel.csproj", "{09EBD60A-C8EF-4BE1-A582-6B7D84AC1F8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityModel", "EntityModel\EntityModel.csproj", "{09EBD60A-C8EF-4BE1-A582-6B7D84AC1F8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminSite", "AdminSite\AdminSite.csproj", "{8D361E32-BA88-4267-BB25-6D0BDA69AD95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminSite", "AdminSite\AdminSite.csproj", "{8D361E32-BA88-4267-BB25-6D0BDA69AD95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminLTE.NETCore", "AdminLTE.NETCore\AdminLTE.NETCore.csproj", "{A89F1E7E-311C-4C66-8EA2-6FD1C1E8185A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminLTE.NETCore", "AdminLTE.NETCore\AdminLTE.NETCore.csproj", "{A89F1E7E-311C-4C66-8EA2-6FD1C1E8185A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

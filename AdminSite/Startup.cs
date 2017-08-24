@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AdminSite
 {
@@ -26,7 +27,7 @@ namespace AdminSite
         {
             services.AddDbContext<GeneralContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-
+            //services.AddIdentity().AddDefaulTokenProvider();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
