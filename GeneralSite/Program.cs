@@ -45,5 +45,8 @@ namespace GeneralSite
 		///    > ssh-add /Users/huyquan/sshmac
         /// 3. Kill process by running on port 80 (Example): Sometimes, you cannot start the nginx because of the port was exist.
 		///    > sudo fuser -k 80/tcp
+        /// Nginx: 80
+        /// Apaches: 8080
+        /// Jenkins: 9999
 	}
 }
