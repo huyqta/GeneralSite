@@ -25,18 +25,18 @@ namespace EntityModel
     /// <summary>
     /// Factory class for EmployeesContext
     /// </summary>
-    //public static class GeneralContextFactory
-    //{
-    //    public static GeneralContext Create(string connectionString)
-    //    {
-    //        var optionsBuilder = new DbContextOptionsBuilder<GeneralContext>();
-    //        optionsBuilder.UseMySql(connectionString);
+    public static class GeneralContextFactory
+    {
+        public static GeneralContext Create(string connectionString)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<GeneralContext>();
+            optionsBuilder.UseMySql(connectionString);
 
-    //        //Ensure database creation
-    //        var context = new GeneralContext(optionsBuilder.Options);
-    //        context.Database.EnsureCreated();
+            //Ensure database creation
+            var context = new GeneralContext(optionsBuilder.Options);
+            context.Database.EnsureCreated();
 
-    //        return context;
-    //    }
-    //}    
+            return context;
+        }
+    }    
 }

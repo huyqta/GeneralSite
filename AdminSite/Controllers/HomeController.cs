@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using AdminSite.Models;
 using EntityModel;
 using AdminSite.Helpers;
+using AdminSite.Filters;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,6 +22,7 @@ namespace AdminSite.Controllers
         {
             _context = context;
         }
+
 
         public IActionResult Index()
         {
