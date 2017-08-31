@@ -24,28 +24,27 @@ namespace AdminSite.Controllers
 
         public IActionResult Index()
         {
-			//if (string.IsNullOrEmpty(HttpContext.Session.GetString(AuthenticationHelper.SessionLogin)))
-			//{
-   //             return RedirectToAction("Login", "Account");
-			//}
-			
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(AuthenticationHelper.SessionLogin)))
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Login(AccountModel model)
-        {            
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(AuthenticationHelper.SessionLogin)))
-            {
-                if (AuthenticationHelper.CheckAuthentication(_context, model))
-                {
-                    HttpContext.Session.SetString(AuthenticationHelper.SessionLogin, model.Username);
-                }
-            }
-            ViewBag.SessionLogin = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
-            //var LoginInformation = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
-            return RedirectToAction("Index", "Home");
-        }
+        //[HttpPost]
+        //public IActionResult Login(AccountModel model)
+        //{            
+        //    if (string.IsNullOrEmpty(HttpContext.Session.GetString(AuthenticationHelper.SessionLogin)))
+        //    {
+        //        if (AuthenticationHelper.CheckAuthentication(_context, model))
+        //        {
+        //            HttpContext.Session.SetString(AuthenticationHelper.SessionLogin, model.Username);
+        //        }
+        //    }
+        //    ViewBag.SessionLogin = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
+        //    //var LoginInformation = HttpContext.Session.GetString(AuthenticationHelper.SessionLogin);
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         public IActionResult About()
         {

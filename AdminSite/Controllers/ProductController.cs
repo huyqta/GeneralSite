@@ -18,7 +18,7 @@ namespace AdminSite.Controllers
             item.DisplayName = "DisplayName";
             listItems.ListItemDisplay.Add(item);
             
-            return View("~/Views/Shared/Index.cshtml", listItems);
+            return View();
         }
     }
 }
