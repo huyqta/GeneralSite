@@ -15,7 +15,7 @@ namespace AdminSite.Filters
 
 		public GeneralAuthorizeAttribute(GeneralContext context)
 		{
-            GeneralContextFactory.Create(Configuration.GetConnectionString("DefaultConnection"));
+            //GeneralContextFactory.Create(Configuration.GetConnectionString("DefaultConnection"));
 			_context = context;
 		}
 
