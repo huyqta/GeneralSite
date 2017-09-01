@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using AdminSite.Helpers;
 
 namespace AdminSite
 {
@@ -26,6 +27,12 @@ namespace AdminSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GeneralContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfileConfiguration());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddMvc();
             //services.AddIdentity().AddDefaulTokenProvider();
             services.AddDistributedMemoryCache();
