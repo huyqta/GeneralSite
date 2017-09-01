@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EntityModel.Entity
 {
-    public class Category
+    public class Article
     {
-        public Category()
+        public Article()
         {
         }
 
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public int ParentId { get; set; }
-
-        public string Description { get; set; }
+        public int Content { get; set; }
 
         [ForeignKey("ParentId")]
-        public Category Parent { get; set; }
+        public string AccountId { get; set; }
+
+        public Account Account { get; set; }
 
         public ICollection<Category> Categories { get; set; }
     }

@@ -20,6 +20,8 @@ namespace EntityModel
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Account> Account { get; set; }
+        public DbSet<Article> Article { get; set; }
+        public DbSet<Book> Book { get; set; }
     }
 
     /// <summary>
