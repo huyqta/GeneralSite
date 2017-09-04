@@ -20,6 +20,8 @@ namespace EntityModel.Entity
 
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
         [ForeignKey("ParentId")]
         public Category Parent { get; set; }
 

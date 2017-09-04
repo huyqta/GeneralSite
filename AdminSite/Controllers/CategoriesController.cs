@@ -7,6 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EntityModel;
 using EntityModel.Entity;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using Google.Cloud.Storage.V1;
+using System.IO;
+using System.Text;
+using Microsoft.Extensions.Options;
+using Google;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Storage.v1;
+using AdminSite.Helpers;
+using Microsoft.Extensions.Configuration;
 
 namespace AdminSite.Controllers
 {
@@ -14,9 +26,12 @@ namespace AdminSite.Controllers
     {
         private readonly GeneralContext _context;
 
-        public CategoriesController(GeneralContext context)
+		IConfiguration _configuration;
+
+        public CategoriesController(GeneralContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: Categories
@@ -60,10 +75,13 @@ namespace AdminSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ParentId,Description")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Name,ParentId,ImageUrl,Description")] Category category, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && file != null)
             {
+                GoogleApis ga = new GoogleApis(_configuration);
+                var fullPath = Path.GetTempFileName();
+                category.ImageUrl = ga.UploadFile(file.FileName, fullPath, file.ContentType);
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -155,5 +173,11 @@ namespace AdminSite.Controllers
         {
             return _context.Category.Any(e => e.Id == id);
         }
+    }
+
+    public class CloudStorageOptions
+    {
+        public string BucketName { get; set; } = "huyquan-images";
+        public string ObjectName { get; set; } = "sample.txt";
     }
 }

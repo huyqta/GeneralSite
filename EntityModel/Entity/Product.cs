@@ -28,7 +28,5 @@ namespace EntityModel.Entity
 
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
-
-        public ICollection<Category> Categories { get; set; }
     }
 }

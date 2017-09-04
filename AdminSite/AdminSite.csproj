@@ -17,6 +17,9 @@
     <PackageReference Include="Microsoft.AspNet.Mvc.TagHelpers" Version="6.0.0-rc1-final" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.29.1.967" />
+    <PackageReference Include="Google.Apis.Storage.v1" Version="1.29.1.958" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="2.1.0-alpha02" />
   </ItemGroup>
 
   <ItemGroup>

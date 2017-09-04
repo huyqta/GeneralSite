@@ -21,7 +21,5 @@ namespace EntityModel.Entity
         public string AccountId { get; set; }
 
         public Account Account { get; set; }
-
-        public ICollection<Category> Categories { get; set; }
     }
 }

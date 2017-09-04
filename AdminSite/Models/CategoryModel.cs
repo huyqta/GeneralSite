@@ -11,7 +11,9 @@ namespace AdminSite.Models
 		public int Id { get; set; }
         [Required]
 		public string Name { get; set; }
-        
+
+        public string ImageUrl { get; set; }
+
         public virtual ICollection<Category> ParentId { get; set; }
 
 		public string Description { get; set; }
