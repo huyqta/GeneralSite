@@ -1,66 +1,71 @@
-﻿@model IEnumerable<EntityModel.Entity.Product>
-
+﻿@using System.Web;
+@model IEnumerable<EntityModel.Entity.Product>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row bg-primary">
+    <div class="col-md-9">
+        <h4 class="media-middle">Danh sách hàng hóa</h4>
+    </div>
+    <div class="col-md-3 pull-right align-middle">
+        <a asp-action="Create" class="btn btn-primary pull-right align-middle">Create New</a>
+    </div>
+</div>
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageUrl)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UnitItem)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                Tên hàng hóa
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>*@
+            <th>
+                Mô tả hàng hóa
+            </th>
+            <th>
+                Đơn vị tính
+            </th>
+            <th>
+                Nhóm hàng
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @*<td>
+                        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayTextFor(modelItem => item.Name)" height="100" width="100">
+                    </td>*@
+                <td>
+                    @*@Html.Raw(HttpUtility.HtmlDecode(Model.Description))*@
+                    @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitItem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td class="pull-right">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

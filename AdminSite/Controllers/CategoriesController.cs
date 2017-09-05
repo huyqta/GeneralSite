@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AdminSite.Helpers;
+using EntityModel;
+using EntityModel.Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EntityModel;
-using EntityModel.Entity;
-using System.Web;
-using Microsoft.AspNetCore.Http;
-using Google.Cloud.Storage.V1;
-using System.IO;
-using System.Text;
-using Microsoft.Extensions.Options;
-using Google;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Storage.v1;
-using AdminSite.Helpers;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AdminSite.Controllers
 {
@@ -37,7 +27,7 @@ namespace AdminSite.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(await _context.Category.Where(c=>c.Id != -1).ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -62,6 +52,7 @@ namespace AdminSite.Controllers
         public IActionResult Create()
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem() { Value = "-1", Text = "--Root--" });
             foreach (var cat in _context.Category)
             {
                 listItems.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
@@ -80,8 +71,7 @@ namespace AdminSite.Controllers
             if (ModelState.IsValid && file != null)
             {
                 GoogleApis ga = new GoogleApis(_configuration);
-                var fullPath = Path.GetTempFileName();
-                category.ImageUrl = ga.UploadFile(file.FileName, fullPath, file.ContentType);
+                category.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.CATEGORY);
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +87,14 @@ namespace AdminSite.Controllers
                 return NotFound();
             }
 
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem() { Value = "-1", Text = "--Root--" });
+            foreach (var cat in _context.Category)
+            {
+                listItems.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
+            }
+            ViewBag.Categories = listItems;
+
             var category = await _context.Category.SingleOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
@@ -110,7 +108,7 @@ namespace AdminSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ParentId,Description")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageUrl,ParentId,Description")] Category category, IFormFile file)
         {
             if (id != category.Id)
             {
@@ -121,6 +119,14 @@ namespace AdminSite.Controllers
             {
                 try
                 {
+                    if (file != null)
+                    {
+                        GoogleApis ga = new GoogleApis(_configuration);
+                        if (!ga.CheckFileExist(category.ImageUrl))
+                        {
+                            category.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.CATEGORY);
+                        }
+                    }
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }

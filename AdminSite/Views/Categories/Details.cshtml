@@ -12,20 +12,25 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            <span>Danh mục</span>
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ParentId)
+            <span>Hình ảnh</span>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ParentId)
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" alt="@Html.DisplayTextFor(model => model.Name)" height="300" width="300">
+        <dt>
+            <span>Danh mục cha</span>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Parent.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <span>Diễn giải</span>
+</dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>

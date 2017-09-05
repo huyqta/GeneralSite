@@ -4,8 +4,16 @@ using System.Text;
 
 namespace Commons
 {
-    class Constants
+    public class Constants
     {
-        //public const string
+        
+    }
+
+    public class ConstantUploadPath
+    {
+        public const string BUCKET_NAME = "general-site";
+        public const string GOOGLE_STORAGE_HOST = "https://storage.googleapis.com/";
+        public const string CATEGORY = "shop-khh/category/";
+        public const string PRODUCT = "shop-khh/product/";
     }
 }

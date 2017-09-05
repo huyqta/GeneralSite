@@ -15,6 +15,7 @@ namespace AdminSite.Helpers
 		protected AutoMapperProfileConfiguration(string profileName) : base(profileName)
 		{
             CreateMap<CategoryModel, Category>().ReverseMap();
-		}
+            CreateMap<ProductModel, Product>().ReverseMap();
+        }
     }
 }

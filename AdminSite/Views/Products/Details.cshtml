@@ -1,4 +1,5 @@
-﻿@model EntityModel.Entity.Product
+﻿@using System.Web;
+@model EntityModel.Entity.Product
 
 @{
     ViewData["Title"] = "Details";
@@ -33,7 +34,8 @@
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+            @*@Html.DisplayFor(model => model.Description)*@
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UnitItem)

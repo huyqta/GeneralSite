@@ -20,6 +20,7 @@
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.29.1.967" />
     <PackageReference Include="Google.Apis.Storage.v1" Version="1.29.1.958" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="2.1.0-alpha02" />
+    <PackageReference Include="TinyMCE.MVC.JQuery" Version="3.4.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Commons\Commons.csproj" />
     <ProjectReference Include="..\EntityModel\EntityModel.csproj" />
   </ItemGroup>
 

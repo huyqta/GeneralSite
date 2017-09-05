@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EntityModel;
 using EntityModel.Entity;
+using AdminSite.Helpers;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using AdminSite.Models;
 
 namespace AdminSite.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly GeneralContext _context;
+        IConfiguration _configuration;
 
-        public ProductsController(GeneralContext context)
+        public ProductsController(GeneralContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: Products
@@ -48,7 +54,21 @@ namespace AdminSite.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id");
+            List<SelectListItem> listCategories = new List<SelectListItem>();
+            foreach (var cat in _context.Category)
+            {
+                if (cat.Id < 0) continue;
+                listCategories.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
+            }
+            ViewBag.Categories = listCategories;
+
+            List<SelectListItem> listUnits = new List<SelectListItem>();
+            var enumUnits = Enum.GetValues(typeof(Commons.Enums.UnitType));
+            foreach (var unit in enumUnits)
+            {
+                listUnits.Add(new SelectListItem() { Value = unit.ToString(), Text = unit.ToString() });
+            }
+            ViewBag.Units = listUnits;
             return View();
         }
 
@@ -57,10 +77,12 @@ namespace AdminSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryId,Name,Price,ImageUrl,Description,UnitItem")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,CategoryId,Name,Price,ImageUrl,Description,UnitItem")] Product product, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && file != null && product.UnitItem != null)
             {
+                GoogleApis ga = new GoogleApis(_configuration);
+                product.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.PRODUCT);
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
