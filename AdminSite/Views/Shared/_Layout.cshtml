@@ -6,15 +6,17 @@
     <title>@ViewData["Title"] - AdminSite</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.css"
+              asp-fallback-href="~/lib/bootswatch/spacelab/bootstrap.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
     <script src="//cdn.tinymce.com/4/tinymce.min.js" asp-append-version="true"></script>
 </head>
 <body>
@@ -39,10 +41,12 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <br />
+    <div class="container-fluid body-content">
+        <div class="row bg-secondary">
+            <h2>  </h2>
+        </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 disable-padding">
                 @Html.Partial("~/Views/Shared/_LeftMenu.cshtml")
             </div>
             <div class="col-md-9">

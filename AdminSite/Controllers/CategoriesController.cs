@@ -88,7 +88,6 @@ namespace AdminSite.Controllers
             }
 
             List<SelectListItem> listItems = new List<SelectListItem>();
-            listItems.Add(new SelectListItem() { Value = "-1", Text = "--Root--" });
             foreach (var cat in _context.Category)
             {
                 listItems.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });

@@ -4,14 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row bg-primary">
-    <div class="col-md-9">
-        <h4 class="media-middle">Danh sách hàng hóa</h4>
-    </div>
-    <div class="col-md-3 pull-right align-middle">
-        <a asp-action="Create" class="btn btn-primary pull-right align-middle">Create New</a>
-    </div>
-</div>
+@Html.Partial("~/Views/Shared/_IndexHeader.cshtml", "Danh sách hàng hóa")
 
 <table class="table">
     <thead>
@@ -51,7 +44,6 @@
                         <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="@Html.DisplayTextFor(modelItem => item.Name)" height="100" width="100">
                     </td>*@
                 <td>
-                    @*@Html.Raw(HttpUtility.HtmlDecode(Model.Description))*@
                     @Html.Raw(HttpUtility.HtmlDecode(item.Description))
                 </td>
                 <td>
@@ -61,9 +53,11 @@
                     @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
                 <td class="pull-right">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
                 </td>
             </tr>
         }
