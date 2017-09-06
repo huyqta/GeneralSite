@@ -52,8 +52,7 @@ namespace AdminSite.Controllers
         public IActionResult Create()
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
-            listItems.Add(new SelectListItem() { Value = "-1", Text = "--Root--" });
-            foreach (var cat in _context.Category)
+            foreach (var cat in _context.Category.Where(cat => cat.ParentId == -1))
             {
                 listItems.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
             }
@@ -68,10 +67,13 @@ namespace AdminSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,ParentId,ImageUrl,Description")] Category category, IFormFile file)
         {
-            if (ModelState.IsValid && file != null)
+            if (ModelState.IsValid)
             {
-                GoogleApis ga = new GoogleApis(_configuration);
-                category.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.CATEGORY);
+                if (file != null)
+                {
+					GoogleApis ga = new GoogleApis(_configuration);
+					category.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.CATEGORY);    
+                }
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -88,7 +90,7 @@ namespace AdminSite.Controllers
             }
 
             List<SelectListItem> listItems = new List<SelectListItem>();
-            foreach (var cat in _context.Category)
+            foreach (var cat in _context.Category.Where(cat => cat.ParentId == -1))
             {
                 listItems.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
             }

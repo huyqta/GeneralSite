@@ -24,16 +24,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td style="width: 130px;">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td style="width: 130px;">
                 @Html.DisplayFor(modelItem => item.Parent.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td class="pull-right">
+            <td class="text-right" style="width: 130px;">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>

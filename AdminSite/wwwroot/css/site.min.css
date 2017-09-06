@@ -26,3 +26,11 @@ body {
         display: none;
     }
 }
+
+.disable-border-radius {
+    border-radius: 0 !important;
+}
+
+.disable-padding {
+    padding: 0;
+}
