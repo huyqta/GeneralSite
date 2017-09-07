@@ -1,0 +1,114 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* FROM _Layout.cshmlt */
+.static-navbar {
+    height: 80px;
+    background-color: #fdd835;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: 700;
+}
+
+.static-navbar-table {
+    display: table;
+    height: 80px;
+    width: 100%;
+}
+
+.static-navbar-item {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+
+.text-color-main {
+    color: #fdd835;
+}
+
+.text-color-item {
+    color: #ffffff;
+}
+
+footer {
+    background-color: #242424;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#map {
+    height: 350px;
+    width: 100%;
+}
+
+/* FROM Index.cshtml */
+.carousel-mod {
+    height: 70vh;
+}
+
+.block-information {
+    height: 200px;
+    display: inline-block;
+    background-image: url("https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-bg1.jpg");
+    background-size: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.max-width-1200 {
+    max-width: 1200px;
+}
+
+.block-information-text {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.category-homepage {
+    height: 275px;
+}
+
+    .category-homepage img {
+        height: 100%;
+        width: 100%;
+    }
