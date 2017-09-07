@@ -36,6 +36,7 @@
 
 /* FROM _Layout.cshmlt */
 .static-navbar {
+    margin-top: 55px;
     height: 80px;
     background-color: #fdd835;
     color: #ffffff;
@@ -56,7 +57,23 @@
 .static-navbar-item {
     display: table-cell !important;
     vertical-align: middle;
+    width: 171px;
 }
+
+    .static-navbar-item:hover {
+        /*border-bottom: 2px solid white;*/
+        outline: 0;
+        color: rgba(36,36,36,0.65);
+        /*position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: #ffffff;
+        content: "";
+        transition: all .3s;*/
+
+    }
 
 .text-color-main {
     color: #fdd835;
@@ -111,4 +128,9 @@ footer {
     .category-homepage img {
         height: 100%;
         width: 100%;
+    }
+
+    a:hover{
+        color: #fff;
+        cursor: pointer;
     }
