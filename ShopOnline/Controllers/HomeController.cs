@@ -28,16 +28,23 @@ namespace ShopOnline.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
+            return View(model);
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            HomeViewModel model = new HomeViewModel();
+            model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
+            return View(model);
+        }
 
-            return View();
+        public IActionResult Store()
+        {
+            HomeViewModel model = new HomeViewModel();
+            model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
+            return View(model);
         }
 
         public IActionResult Error()

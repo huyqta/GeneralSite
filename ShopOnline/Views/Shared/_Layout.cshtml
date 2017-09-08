@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShopOnline</title>
+    <title>@ViewData["Title"] - Công ty TNHH TM&DV Kim Huy Hoàng</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -16,39 +16,41 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700,800,900" rel="stylesheet">
     <style>
-        a{
+        .static-navbar a {
             color: #242424;
-            text-decoration: none; 
-        } 
-        a:hover {
-            color: rgba(36,36,36,0.65);
             text-decoration: none;
+        }
+
+            .static-navbar a:hover {
+                color: rgba(36,36,36,0.65);
+                text-decoration: none;
             }
 
-            li {
-                -webkit-box-shadow:inset 0px 0px 0px 0px rgba(36,36,36,0.65)000;
-                -moz-box-shadow:inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
-                box-shadow:inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
-                display: inline-block;
-                position: relative;
-                padding-bottom: 3px;
-                margin-right: 10px;
-                -webkit-transition: box-shadow 0.3s; /* Safari */
-                transition: box-shadow 0.3s;
-            }
-            
-            li:hover{
-                -webkit-box-shadow:inset 0px -5px 0px 0px rgba(36,36,36,0.65);
-                -moz-box-shadow:inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
-                box-shadow:inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+        .static-navbar li {
+            -webkit-box-shadow: inset 0px 0px 0px 0px rgba(36,36,36,0.65)000;
+            -moz-box-shadow: inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
+            box-shadow: inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 3px;
+            margin-right: 10px;
+            -webkit-transition: box-shadow 0.3s; /* Safari */
+            transition: box-shadow 0.3s;
+        }
+
+            .static-navbar li:hover {
+                -webkit-box-shadow: inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+                -moz-box-shadow: inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+                box-shadow: inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
             }
 
-            .category-homepage {
-                height: 275px;
-                margin: 20px 0;
-            }
+        .category-homepage {
+            height: 275px;
+            margin: 20px 0;
+        }
 
             .category-homepage img {
                 height: 265px;
@@ -58,13 +60,44 @@
                 transition: border 0.5s ease;
             }
 
-            .category-homepage img:hover{
-                border: 1px solid #242424;
+                .category-homepage img:hover {
+                    border: 1px solid #242424;
+                }
+
+        .left-menu-item {
+            width: 100%;
+            border-bottom: 1px solid #8c8c8c;
+            padding: 5px 0;
+        }
+
+            .left-menu-item.active {
+                width: 100%;
+                border-bottom: 1px solid #242424;
+                padding: 7px 0;
+                color: #242424 !important;
             }
+
+                .left-menu-item.active a {
+                    color: #242424 !important;
+                }
+
+            .left-menu-item a {
+                color: #8c8c8c;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .left-menu-item a:hover {
+                    color: #242424;
+                }
+
+        ul .left-menu-item.root-category:last-child {
+            border-bottom: none;
+        }
     </style>
-		
+
 </head>
-	
+
 <body style="padding-top: 185px;">
     <div id="fb-root"></div>
     @*/ Script for facebook plugin /*@
@@ -77,24 +110,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    @*/ Script for google map plugin /*@
-    <script>
-        function initMap() {
-            var uluru = { lat: -25.363, lng: 131.044 };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAte5w7RYGUcM0KH_BEUnRjijmMxJfXcNA&callback=initMap">
-    </script>
-
     <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 105px;">
         <div class="container">
             <div class="navbar-header">
@@ -117,7 +132,7 @@
                 </a>
             </div>
             <div class="navbar-collapse collapse pull-right">
-				<div class="input-group" style="width: 300px;">
+                <div class="input-group" style="width: 300px;">
                     <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="button">Go!</button>
@@ -133,8 +148,8 @@
                             @foreach (var category in Model.ListCategory.Where(cat => cat.ParentId == -1))
                             {
                                 <li class="static-navbar-item">
-									<a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
-								</li>
+                                    <a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -142,63 +157,110 @@
             </div>
         </div>
     </nav>
-
+    @{
+        //var iconCatActived = "fa-angle-right"; //chevron-right
+    }
     <div class="container-fluid" style="padding: 0;">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="container-fluid max-width-1200" style="padding: 0;">
-                <div class="row footer">
-                    <div class="col-md-3">
-                        <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Information</h4>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Our Stores</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Contact Us</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">About Us</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Categories</h4>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Roofing</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Drainage</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Metalwork</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Cements</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Masonry</p>
-                        <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Lintels</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Contact us</h4>
-                        <dl class="row">
-                            <dt class="col-sm-1"><img src="https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-footer-icon1.png"></dt>
-                            <dd class="col-sm-10 text-color-item">
-                                <span>4578 Marmora Road,</span><br />
-                                <span>Glasgow D04 89GR</span>
-                                <br />
-                                <br />
-                            </dd>
-                            <dt class="col-sm-1"><img src="https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-footer-icon2.png"></dt>
-                            <dd class="col-sm-10 text-color-item">
-                                <span>800-2345-6789</span>
-                                <br />
-                                <br />
-                            </dd>
-                            <dt class="col-sm-1"><img src="https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-footer-icon3.png"></dt>
-                            <dd class="col-sm-10 text-color-main">
-                                <span>info@demolink.org</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="fb-page" data-href="https://www.facebook.com/kimhuyhoang.dng" data-tabs="timeline" data-width="300" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/kimhuyhoang.dng" class="fb-xfbml-parse-ignore">
-                                <a href="https://www.facebook.com/kimhuyhoang.dng">Bảo hộ lao động Kim Huy Hoàng</a>
-                            </blockquote>
-                        </div>
-                    </div>
+        <div class="breadcrumb">
+            <div class="max-width-1200" style="margin: 0 auto;">
+                <div class="row" style="font-size: 16px;">
+                    @if (Model.ActiveProduct == null)
+                    {
+                        @if (Model.ActiveCategory != null)
+                        {
+                            <span><i class="fa fa-home" style="font-size: 24px;"></i>&nbsp;&nbsp;</span><i class="fa fa-angle-right"></i><span>&nbsp;&nbsp;@Model.ActiveCategory.Name</span>
+                        }
+                    }
+                    else
+                    {
+                        <span><i class="fa fa-home" style="font-size: 24px;"></i>&nbsp;&nbsp;</span><i class="fa fa-angle-right"></i><span>&nbsp;&nbsp;@Model.ActiveProduct.Category.Name&nbsp;&nbsp;</span><i class="fa fa-angle-right"></i><span>&nbsp;&nbsp;@Model.ActiveProduct.Name</span>
+                    }
                 </div>
             </div>
-        </footer>
-        <div class="container-fluid" style="padding: 0;">
-            <div id="map"></div>
         </div>
+        <div class="max-width-1200" style="margin: 0 auto;">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Categories</strong></h4>
+                    <ul class="list-unstyled">
+                        @foreach (var cat in Model.ListCategory.Where(lc => lc.ParentId == -1))
+                        {
+                            var catActive = cat.Id == Model.ActiveCategoryId ? "active" : "";
+                            <li class="left-menu-item root-category @catActive">
+                                <a asp-controller="Category" asp-action="Index" asp-route-id="@cat.Id"><i class="fa fa-angle-right"></i> @cat.Name</a>
+                            </li>
+                            @if (Model.ListCategory.Any(lc => lc.ParentId == cat.Id))
+                            {
+                                <li>
+                                    <ul class="list-unstyled">
+                                        @foreach (var cat2 in Model.ListCategory.Where(lc => lc.ParentId == cat.Id))
+                                        {
+                                            var catActive2 = cat2.Id == Model.ActiveCategoryId ? "active" : "";
+                                            <li class="left-menu-item @catActive2">
+                                                <a asp-controller="Category" asp-action="Index" asp-route-id="@cat2.Id">&nbsp;&nbsp;<i class="fa fa-angle-right"></i> @cat2.Name</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+
+                        }
+                    </ul>
+                    <br />
+                    @* INFORMATION *@
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Information</strong></h4>
+                    <ul class="list-unstyled">
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Delivery</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Legal notice</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Terms and conditions of use</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">About us</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Secure payment</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Our stores</a>
+                        </li>
+                    </ul>
+                    <br />
+                    @* NEW PRODUCT *@
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>New product</strong></h4>
+                    <ul class="list-unstyled">
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Delivery</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Legal notice</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Terms and conditions of use</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">About us</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Secure payment</a>
+                        </li>
+                        <li class="left-menu-item">
+                            <i class="fa fa-angle-right"></i> <a href="#">Our stores</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-9">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <hr />
+        @Html.Partial("~/Views/Shared/_LayoutFooter.cshtml")
         <div class="container-fluid" style="color: gray;font-size: 18px; font-weight: 700; padding-top: 15px; ">
             <h4 class="text-center">© 2016 Bulding Materials. All Rights Reserved</h4>
         </div>

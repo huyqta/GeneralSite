@@ -1,0 +1,181 @@
+﻿@model HomeViewModel;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Công ty TNHH TM&DV Kim Huy Hoàng</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700,800,900" rel="stylesheet">
+    <style>
+        a{
+            color: #242424;
+            text-decoration: none; 
+        } 
+        a:hover {
+            color: rgba(36,36,36,0.65);
+            text-decoration: none;
+            }
+
+            li {
+                -webkit-box-shadow:inset 0px 0px 0px 0px rgba(36,36,36,0.65)000;
+                -moz-box-shadow:inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
+                box-shadow:inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
+                display: inline-block;
+                position: relative;
+                padding-bottom: 3px;
+                margin-right: 10px;
+                -webkit-transition: box-shadow 0.3s; /* Safari */
+                transition: box-shadow 0.3s;
+            }
+            
+            li:hover{
+                -webkit-box-shadow:inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+                -moz-box-shadow:inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+                box-shadow:inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
+            }
+
+            .category-homepage {
+                height: 275px;
+                margin: 20px 0;
+            }
+
+            .category-homepage img {
+                height: 265px;
+                width: 265px;
+                padding: 2px;
+                border: 1px solid #d7d7d7;
+                transition: border 0.5s ease;
+            }
+
+            .category-homepage img:hover{
+                border: 1px solid #242424;
+            }
+    </style>
+		
+</head>
+	
+<body style="padding-top: 185px;">
+    <div id="fb-root"></div>
+    @*/ Script for facebook plugin /*@
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1481655535225355";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    @*/ Script for google map plugin /*@
+    <script>
+        function initMap() {
+            var uluru = { lat: -25.363, lng: 131.044 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAte5w7RYGUcM0KH_BEUnRjijmMxJfXcNA&callback=initMap">
+    </script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 105px;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="~/images/logo/logo.png" alt="Kim Huy Hoang" width="75" height="75" />
+                        </div>
+                        <div class="media-body media-middle" style="font-family: 'Montserrat', sans-serif; color: white;">
+                            <h4 class="media-heading"><strong>KIM HUY HOANG</strong></h4>
+                            <h6>Cty TNHH TM & DV</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse pull-right">
+				<div class="input-group" style="width: 300px;">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="static-navbar" style="margin-top: 21px;">
+            <div class="max-width-1200" style="margin: 0 auto;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="list-inline static-navbar-table">
+                            @foreach (var category in Model.ListCategory.Where(cat => cat.ParentId == -1))
+                            {
+                                <li class="static-navbar-item">
+									<a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
+								</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="padding: 0;">
+        @RenderBody()
+        <hr />
+        @Html.Partial("~/Views/Shared/_LayoutFooter.cshtml")
+        <div class="container-fluid" style="padding: 0;">
+            <div id="map"></div>
+        </div>
+        <div class="container-fluid" style="color: gray;font-size: 18px; font-weight: 700; padding-top: 15px; ">
+            <h4 class="text-center">© 2016 Bulding Materials. All Rights Reserved</h4>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = Model.ActiveProduct.Name;
+}
+<style>
+    .price-label {
+        width: 200px;
+        position: relative;
+        padding: 20px 23px 17px 47px;
+        border-radius: 40px;
+        margin-bottom: 15px;
+        background-color: #fdd835;
+        font-size: 16px;
+    }
+
+        .price-label:before {
+            position: absolute;
+            top: 37%;
+            left: 18px;
+            width: 16px;
+            height: 16px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            content: "";
+        }
+
+    .category-product {
+        margin: 20px 0;
+    }
+
+        .category-product img {
+            height: 265px;
+            width: 265px;
+            padding: 2px;
+            border: 1px solid #d7d7d7;
+            transition: border 0.5s ease;
+        }
+
+            .category-product img:hover {
+                border: 1px solid #242424;
+            }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-4 category-product">
+                <img src="@Model.ActiveProduct.ImageUrl" alt="@Model.ActiveProduct.Name" />
+            </div>
+            <div class="col-sm-8">
+                <h3 style="font-weight: 700;margin: 15px 0;">@Model.ActiveProduct.Name</h3>
+                <h3><strong>Giá:</strong> Liên hệ</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="text-uppercase">Thông tin chi tiết</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Raw(Model.ActiveProduct.Description)
+                </div>
+            </div>
+        </div>
+    </div>
