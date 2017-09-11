@@ -22,6 +22,8 @@ namespace EntityModel.Entity
 
         public string ImageUrl { get; set; }
 
+        public DateTime DateCRT { get; set; }
+
         [ForeignKey("ParentId")]
         public Category Parent { get; set; }
 

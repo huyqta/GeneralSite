@@ -16,6 +16,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
+    <link rel="icon" href="~/images/logo/logo.png">
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700,800,900" rel="stylesheet">
     <style>
@@ -91,11 +92,20 @@
                     color: #242424;
                 }
 
-        ul .left-menu-item.root-category:last-child {
+        ul .left-menu-item.root-category:last-child, .information-block .left-menu-item:last-child, .list-new-product .left-menu-item:last-child {
             border-bottom: none;
         }
-    </style>
 
+        .new-product-price-label {
+            background-color: #fdd835;
+            max-width: 80px;
+            height: 20px;
+            padding: 5px 16px;
+            border-radius: 10px;
+            color: #242424;
+        }
+    </style>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
 <body style="padding-top: 185px;">
@@ -210,48 +220,52 @@
                     <br />
                     @* INFORMATION *@
                     <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Information</strong></h4>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled information-block">
                         <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Delivery</a>
+                            <a asp-controller="Home" asp-action="About">
+                                <i class="fa fa-angle-right"></i><span> Giới thiệu</span>
+                            </a>
                         </li>
                         <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Legal notice</a>
+                            <a asp-controller="Home" asp-action="Contact">
+                                <i class="fa fa-angle-right"></i><span> Liên hệ</span>
+                            </a>
                         </li>
                         <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Terms and conditions of use</a>
+                            <a asp-controller="Home" asp-action="Store">
+                                <i class="fa fa-angle-right"></i><span> Chi nhánh, kho hàng</span>
+                            </a>
                         </li>
                         <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">About us</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Secure payment</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Our stores</a>
+                            <a asp-controller="Home" asp-action="Delivery">
+                                <i class="fa fa-angle-right"></i><span> Chính sách vận chuyển</span>
+                            </a>
                         </li>
                     </ul>
                     <br />
                     @* NEW PRODUCT *@
                     <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>New product</strong></h4>
-                    <ul class="list-unstyled">
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Delivery</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Legal notice</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Terms and conditions of use</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">About us</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Secure payment</a>
-                        </li>
-                        <li class="left-menu-item">
-                            <i class="fa fa-angle-right"></i> <a href="#">Our stores</a>
-                        </li>
+                    <ul class="list-unstyled list-new-product">
+                        @foreach (var pro in Model.ListProduct.OrderByDescending(prd => prd.DateCRT).Take(5))
+                        {
+                            <li class="left-menu-item">
+                                <div class="media" style="display: inline-flex;">
+                                    <img class="d-flex align-self-start mr-3" src="@pro.ImageUrl" alt="@pro.Name" height="93" width="93">
+                                    <div class="media-body" style="margin-left: 15px; color: #8c8c8c">
+                                        <h5 class="mt-0" style="margin-top: 0;color: #242424;"><strong>@pro.Name</strong></h5>
+                                        @Html.Raw(pro.Description)
+                                        @if (pro.Price == 0)
+                                        {
+                                            <h6 class="new-product-price-label">Liên hệ</h6>
+                                        }
+                                        else
+                                        {
+                                            <h6 class="new-product-price-label" style="color: #242424;"><strong>@pro.Price.ToString("###,###,###")</strong></h6>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div class="col-sm-9">

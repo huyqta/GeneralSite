@@ -21,7 +21,7 @@ namespace ShopOnline.Controllers
             HomeViewModel model = new HomeViewModel();
             model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
             model.ListProduct = _context.Product.Where(pro => pro.CategoryId == id).ToList();
-            
+
             model.ActiveProduct = _context.Product.Where(pro => pro.Id == id).FirstOrDefault();
             model.ActiveCategory = _context.Category.Where(cat => cat.Id != model.ActiveProduct.CategoryId).FirstOrDefault();
 

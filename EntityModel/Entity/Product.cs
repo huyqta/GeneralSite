@@ -25,6 +25,8 @@ namespace EntityModel.Entity
 
         public string UnitItem { get; set; }
 
+        public DateTime DateCRT { get; set; }
+
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
     }

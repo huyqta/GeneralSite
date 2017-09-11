@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ShopOnline.Models;
 using EntityModel;
+using Microsoft.AspNetCore.Http;
 
 namespace ShopOnline.Controllers
 {
@@ -16,6 +17,8 @@ namespace ShopOnline.Controllers
         public HomeController(GeneralContext context)
         {
             _context = context;
+            
+
         }
 
         public IActionResult Index()
@@ -23,6 +26,8 @@ namespace ShopOnline.Controllers
             HomeViewModel model = new HomeViewModel();
             model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
             model.ListProduct = _context.Product.ToList();
+            //HttpContext.Session.SetInt32("Page", 1);
+            //HttpContext.Session.SetInt32("ItemPerPage", 4);
             return View(model);
         }
 
@@ -41,6 +46,13 @@ namespace ShopOnline.Controllers
         }
 
         public IActionResult Store()
+        {
+            HomeViewModel model = new HomeViewModel();
+            model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
+            return View(model);
+        }
+
+        public IActionResult Delivery()
         {
             HomeViewModel model = new HomeViewModel();
             model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
