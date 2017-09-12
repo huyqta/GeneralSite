@@ -32,7 +32,7 @@ namespace ShopOnline.Controllers
             //    model.ItemPerPage = HttpContext.Session.GetInt32("ItemPerPage").Value;
             //}
 
-            model.ListProduct = _context.Product.Where(pro => pro.CategoryId == id).ToList();
+            model.ListProduct = _context.Product.ToList();
             model.ListProductPaging = _context.Product.Where(pro => pro.CategoryId == id).Skip((model.Page - 1) * model.ItemPerPage).Take(model.ItemPerPage).ToList();
             model.ActiveCategory = _context.Category.Where(cat => cat.Id == id).FirstOrDefault();
             model.ActiveCategoryId = id;
@@ -47,7 +47,7 @@ namespace ShopOnline.Controllers
             model.Page = page;
             model.ItemPerPage = itempp;
 
-            model.ListProduct = _context.Product.Where(pro => pro.CategoryId == id).ToList();
+            model.ListProduct = _context.Product.ToList();
             model.ListProductPaging = _context.Product.Where(pro => pro.CategoryId == id).Skip((model.Page - 1) * model.ItemPerPage).Take(model.ItemPerPage).ToList();
             model.ActiveCategory = _context.Category.Where(cat => cat.Id == id).FirstOrDefault();
             model.ActiveCategoryId = id;
