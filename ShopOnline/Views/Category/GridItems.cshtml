@@ -36,6 +36,16 @@
             .category-product img:hover {
                 border: 1px solid #242424;
             }
+
+	.category-product a{
+        color: #242424;
+        text-decoration: none;
+    }
+
+	.category-product a:hover{
+        color: rgba(36,36,36,0.65);
+        text-decoration: none;
+    }
 </style>
 
 <div class="row">
@@ -44,11 +54,15 @@
             @foreach (var pro in Model.ListProductPaging)
             {
                 <div class="col-sm-4 category-product">
-                    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
+                    <!--<a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
                         <img src="@pro.ImageUrl" alt="@pro.Name" />
                     </a>
                     <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
                         <p style="font-weight: 700;font-size: 16px; margin: 15px 0;">@pro.Name</p>
+                    </a>-->
+				    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
+                        <img src="@pro.ImageUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
+                        <p style="text-align: left;font-weight: 700;font-size: 16px; margin: 15px 10px;">@pro.Name</p>
                     </a>
                     <p class="price-label" style="color: #242424;"><strong>Giá:</strong> Liên hệ</p>
                 </div>
