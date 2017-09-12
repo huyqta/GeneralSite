@@ -3,87 +3,54 @@
     ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+<style>
+    .list-category-item {
+        border: 1px #000 solid;
+        border-radius: 5px;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 5px;
+        color: #303030;
+        font-weight: bold;
+        letter-spacing: 4px;
+        font-size: 19px;
+        line-height: 22px;
+        padding: 0 20px;
+        min-height: 80px;
+    }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    </ol>
-    <div class="carousel-inner carousel-mod" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner_1.gif" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+    .list-category-item:hover {
+        /*background-color:*/
+    }
+
+    .list-category {
+        background-color: white;
+        padding: 15px 0;
+    }
+</style>
+@*<div class="list-category">
+    <div class="max-width-1200" style="margin: 0 auto;">
+        <div class="row">
+            @foreach (var category in Model.ListCategory.Where(cat => cat.ParentId == -1))
+            {
+                <div class="col-sm-4">
+                    <div class="list-category-item">
+                        <a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id"><h4>@category.Name</h4></a>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-<br />
-<div class="container-fluid max-width-1200">
-    <div class="row">
-        <div class="col-sm-4 block-information">
-            <h4 class="block-information-text">TEST TEXT</h4>
-        </div>
-        <div class="col-sm-4 block-information">
-            <h4 class="block-information-text">TEST TEXT</h4>
-        </div>
-        <div class="col-sm-4 block-information">
-            <h4 class="block-information-text">TEST TEXT</h4>
-        </div>
-    </div>
-</div>
-<br />
+</div>*@
 <div class="container-fluid max-width-1200" style="margin-bottom: 75px;">
-    <h2 style="font-size: 26px; font-family: 'Montserrat', sans-serif; color: black; font-weight: 700; text-align: center;">CATEGORIES</h2>
-    <br />
-    <span>Items per page:</span>
-    <select>
-        <option>8</option>
-        <option>16</option>
-        <option>32</option>
-    </select>
-    <br />
-    <br />
+    <h4 style="color: black; font-weight: 700; text-align: left; margin-left: 20px;">Sản phẩm mới</h4>
     <div class="row">
-        @foreach (var cat in Model.ListCategory.Where(cat => cat.ParentId == -1))
+        @foreach (var pro in Model.ListProduct.OrderByDescending(lst=>lst.DateCRT).Take(9).ToList())
         {
-            <div class="col-sm-3 category-homepage">
-                <img src="@cat.ImageUrl" alt="@cat.Name" />
-                <p style="font-weight: 700;font-size: 16px; margin-top: 5px;">@cat.Name</p>
-            </div>
-        }
-    </div>
-</div>
-<hr />
-<div class="container-fluid max-width-1200" style="margin-bottom: 75px;">
-    <h2 style="font-size: 26px; font-family: 'Montserrat', sans-serif; color: black; font-weight: 700; text-align: center;">PRODUCTS POPULAR</h2>
-    <br />
-    <span>Items per page:</span>
-    <select>
-        <option>8</option>
-        <option>16</option>
-        <option>32</option>
-    </select>
-    <br />
-    <br />
-    <div class="row">
-        @foreach (var pro in Model.ListProduct)
-        {
-            <div class="col-sm-3 category-homepage">
-                <img src="@pro.ImageUrl" alt="@pro.Name" />
+            <div class="col-sm-4 category-homepage">
+                <img src="@pro.ImageUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
                 <p style="text-align: center;font-weight: 700;font-size: 16px; margin-top: 5px;">@pro.Name</p>
+                <p class="price-label-home" style="color: #242424;margin: 0 auto;"><strong>Giá:</strong> Liên hệ</p>
             </div>
         }
     </div>

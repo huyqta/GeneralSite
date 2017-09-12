@@ -120,7 +120,7 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 105px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -129,28 +129,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="~/images/logo/logo.png" alt="Kim Huy Hoang" width="75" height="75" />
-                        </div>
-                        <div class="media-body media-middle" style="font-family: 'Montserrat', sans-serif; color: white;">
-                            <h4 class="media-heading"><strong>KIM HUY HOANG</strong></h4>
-                            <h6>Cty TNHH TM & DV</h6>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="media" style="height: 95px;">
+                            <div class="media-left media-middle">
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                                    <img src="~/images/logo/logo.png" alt="Kim Huy Hoang" width="55" height="55" />
+                                </a>
+                            </div>
+                            <div class="media-body media-middle" style="font-family: 'Oswald', sans-serif; color: #383838;">
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                                    <h3 class="media-heading"><strong>KIM HUY HOÀNG</strong></h3>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse pull-right">
-                <div class="input-group" style="width: 300px;">
-                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
+                    <div class="col-sm-6">
+                        <div class="input-group" id="searchbox" style="width: 80%; float: right; margin: 25px;">
+                            <input type="text" class="form-control" style="background-color: #f5f5f5;" placeholder="Search for..." aria-label="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="static-navbar" style="margin-top: 21px;">
+        <div class="static-navbar">
             <div class="max-width-1200" style="margin: 0 auto;">
                 <div class="row">
                     <div class="col-sm-12">
@@ -173,7 +178,7 @@
     <div class="container-fluid" style="padding: 0;">
         <div class="breadcrumb">
             <div class="max-width-1200" style="margin: 0 auto;">
-                <div class="row" style="font-size: 16px;">
+                <div class="row" style="font-size: 16px; margin-left: 15px; margin-right: 0;">
                     @if (Model.ActiveProduct == null)
                     {
                         @if (Model.ActiveCategory != null)
@@ -189,9 +194,9 @@
             </div>
         </div>
         <div class="max-width-1200" style="margin: 0 auto;">
-            <div class="row">
+            <div class="row" style="margin-left: 0; margin-right: 0;">
                 <div class="col-sm-3">
-                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Categories</strong></h4>
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Danh mục sản phẩm</strong></h4>
                     <ul class="list-unstyled">
                         @foreach (var cat in Model.ListCategory.Where(lc => lc.ParentId == -1))
                         {
@@ -219,7 +224,7 @@
                     </ul>
                     <br />
                     @* INFORMATION *@
-                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Information</strong></h4>
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Thông tin công ty</strong></h4>
                     <ul class="list-unstyled information-block">
                         <li class="left-menu-item">
                             <a asp-controller="Home" asp-action="About">
@@ -244,7 +249,7 @@
                     </ul>
                     <br />
                     @* NEW PRODUCT *@
-                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>New product</strong></h4>
+                    <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Sản phẩm mới</strong></h4>
                     <ul class="list-unstyled list-new-product">
                         @foreach (var pro in Model.ListProduct.OrderByDescending(prd => prd.DateCRT).Take(5))
                         {
@@ -276,7 +281,7 @@
         <hr />
         @Html.Partial("~/Views/Shared/_LayoutFooter.cshtml")
         <div class="container-fluid" style="color: gray;font-size: 18px; font-weight: 700; padding-top: 15px; ">
-            <h4 class="text-center">© 2016 Bulding Materials. All Rights Reserved</h4>
+            <h4 class="text-center">© 2017 Công ty TNHH TM&DV Kim Huy Hoàng. All Rights Reserved</h4>
         </div>
     </div>
 

@@ -47,9 +47,9 @@
         cursor: pointer;
     }
 
-    .pages.active {
-        background-color: #fdd835;
-    }
+        .pages.active {
+            background-color: #fdd835;
+        }
 </style>
 <div class="row">
     <div class="col-sm-12">
@@ -72,26 +72,43 @@
                 <option>12</option>
             </select>
         </div>*@
-    <div class="col-sm-12 text-left">
-        @{ var noOfPages = Model.ListProduct.Count / Model.ItemPerPage;
-            for (int page = 1; page <= noOfPages + 1; page++)
-            {
-                <span class="pages">@string.Format("{0}", page)</span>
+    @if (Model.ListProductPaging.Count > 0)
+    {
+        <div class="col-sm-12 text-left">
+            @{ var noOfPages = Model.ListProduct.Count / Model.ItemPerPage;
+                for (int page = 1; page <= noOfPages + 1; page++)
+                {
+                    <span class="pages">@string.Format("{0}", page)</span>
+                }
             }
-        }
-    </div>
+        </div>
+        <br />
+        <div id="partial-grid-items">
+            @{
+                Html.RenderPartial("GridItems");
+            }
+        </div>
+                }
+                else
+                {
+                    <h3>Chưa có sản phẩm trong nhóm này.</h3>
+                }
 </div>
-<br />
-<div id="partial-grid-items">
-    @{
-        Html.RenderPartial("GridItems");
-    }
-</div>
+
 <script>
     $(document).ready(function () {
         $(".pages").click(function (e) {
-            var page = $(this).text();
-            var selectedPage = $(this);
+            LoadPartialGridItems($(this));
+        });
+
+        $(window).load(function () {
+            LoadPartialGridItems($(".pages").first());
+        });
+
+        function LoadPartialGridItems(btn) {
+            var page = btn.text();
+            if (page !== null && page !== '') {
+                var selectedPage = btn;
                 $.ajax({
                     url: "/Category/GetGridItems",
                     type: "post",
@@ -106,6 +123,7 @@
                         selectedPage.addClass("active");
                     },
             });
-        });
+            }
+        }
     });
 </script>

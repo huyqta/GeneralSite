@@ -3,7 +3,7 @@
     <div class="container-fluid max-width-1200" style="padding: 0;">
         <div class="row footer">
             <div class="col-md-3">
-                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Information</h4>
+                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Thông tin công ty</h4>
                 <a asp-controller="Home" asp-action="About">
                     <p class="text-color-item" style="font-size: 16px; font-weight: 400;">Giới thiệu</p>
                 </a>
@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Categories</h4>
+                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Danh mục sản phẩm</h4>
                 @foreach (var cat in Model.ListCategory.Where(lc => lc.ParentId == -1))
                 {
                     <a asp-controller="Category" asp-action="Index" asp-route-id="@cat.Id">
@@ -27,12 +27,14 @@
                 }
             </div>
             <div class="col-md-3">
-                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Contact us</h4>
+                <h4 class="text-color-main" style="font-size: 18px; font-weight: 700; text-transform: uppercase;">Liên hệ</h4>
                 <dl class="row">
                     <dt class="col-sm-1"><img src="https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-footer-icon1.png"></dt>
                     <dd class="col-sm-10 text-color-item">
-                        <span>4578 Marmora Road,</span><br />
-                        <span>Glasgow D04 89GR</span>
+                        <span>146 Triệu Nữ Vương</span><br />
+                        <span>Phường Hải Châu 2</span><br />
+                        <span>Quận Hải Châu</span><br />
+                        <span>TP Đà Nẵng</span>
                         <br />
                         <br />
                     </dd>
@@ -44,7 +46,7 @@
                     </dd>
                     <dt class="col-sm-1"><img src="https://template58484.motopreview.com/mt-demo/58400/58484/mt-content/uploads/2016/04/mt-0392-home-footer-icon3.png"></dt>
                     <dd class="col-sm-10 text-color-main">
-                        <span>info@demolink.org</span>
+                        <span>kimhuyhoang.dng@gmail.com</span>
                     </dd>
                 </dl>
             </div>
