@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -179,6 +180,15 @@ namespace AdminSite.Controllers
         private bool CategoryExists(int id)
         {
             return _context.Category.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllImageProduct()
+        {
+            GoogleApis ga = new GoogleApis(_configuration);
+            var images = ga.GetAllProductImages();
+            //var res = JsonConvert.SerializeObject(images);
+            return Json(images);
         }
     }
 

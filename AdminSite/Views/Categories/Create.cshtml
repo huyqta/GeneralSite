@@ -45,11 +45,14 @@
 <div>
     <a asp-action="Index">Quay lại danh sách</a>
 </div>
-
+@Html.Partial("~/Views/Shared/_ChooseImage.cshtml")
 <script>
 	$(document).ready(function(){
-        $('#showChooseImage').click(function(){
-	        $('#myModal').modal('shown');
+        $('#showChooseImage').click(function () {
+            alert(1);
+            $('#myModal').on('shown.bs.modal', function () {
+                
+            })
     	});
 	});
     

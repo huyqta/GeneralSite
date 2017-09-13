@@ -8,6 +8,7 @@ using Google.Apis.Auth.OAuth2;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace AdminSite.Helpers
 {
@@ -43,6 +44,21 @@ namespace AdminSite.Helpers
             var storage = StorageClient.Create();
             var fileName = imageUrl.Replace(googleStorageHost + bucketName, "");
             return storage.GetObject(bucketName, fileName) != null;
+        }
+
+        public List<Google.Apis.Storage.v1.Data.Object> GetAllProductImages()
+        {
+            List<Google.Apis.Storage.v1.Data.Object> list = new List<Google.Apis.Storage.v1.Data.Object>();
+            var storage = StorageClient.Create();
+            var listObject = storage.ListObjects(bucketName, "");
+            foreach (var obj in listObject)
+            {
+                if (obj.Name.Contains(Commons.ConstantUploadPath.CATEGORY))
+                {
+                    list.Add(obj);
+                }
+            }
+            return list;
         }
     }
 }

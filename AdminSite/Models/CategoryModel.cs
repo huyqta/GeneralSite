@@ -8,14 +8,16 @@ namespace AdminSite.Models
 {
     public class CategoryModel
     {
-		public int Id { get; set; }
+        public int Id { get; set; }
         [Required]
-		public string Name { get; set; }
+        public string Name { get; set; }
 
         public string ImageUrl { get; set; }
 
         public virtual ICollection<Category> ParentId { get; set; }
 
-		public string Description { get; set; }
+        public string Description { get; set; }
+
+        public List<Google.Apis.Storage.v1.Data.Object> ListImages { get; set; }
     }
 }
