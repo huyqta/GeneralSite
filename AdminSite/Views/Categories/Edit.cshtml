@@ -4,7 +4,25 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #list-images-create li{
+        height: 87px;
+        width: 87px;
+        border: 1px solid #242424;
+        padding: 5px;
+        text-align: center;
+        margin: 5px;
+    }
 
+    #list-images-create li.selected{
+        background-color: dodgerblue;
+    }
+
+    #list-images-create li img{
+        height: 75px;
+        width: 75px;
+    }
+</style>
 <div class="bg-primary form-inline">
     <div class="row">
         <div class="col-md-12">
@@ -15,7 +33,7 @@
 <br />
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -25,9 +43,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImageUrl" class="control-label">Hình ảnh</label><br />
-                <img src="@Model.ImageUrl" alt="@Model.Name" asp-append-version="true" height="300" width="300" />
-                <input type="file" id="file" name="file" value="ImageUrl" class="form-control">
-                <input type="hidden" value="ImageUrl">
+                <!--<img src="@Model.ImageUrl" alt="@Model.Name" asp-append-version="true" height="300" width="300" />-->
+                <!--<input type="file" id="file" name="file" value="ImageUrl" class="form-control">-->
+				<button type="button" id="showChooseImage" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                  Chọn hình 
+                </button>
+				<div>
+                    <ul id="list-images-create" class="list-unstyled list-inline">
+                            
+                    </ul>
+                </div>
+                <input asp-for="ImageUrl" type="hidden" id="listImageUrl" value="ImageUrl">
             </div>
             <div class="form-group">
                 <label asp-for="ParentId" class="control-label">Danh mục cha</label>
@@ -35,7 +61,7 @@
                 <span asp-validation-for="ParentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label">Mô tả</label>
+                <label asp-for="Description" class="control-label">Diễn giải</label>
                 <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -46,9 +72,31 @@
         </form>
     </div>
 </div>
-@section Scripts
-    {
+@Html.Partial("~/Views/Shared/_ChooseImage.cshtml")
     <script>
         tinymce.init({ selector: 'textarea' });
     </script>
-}
+    <script>
+    $(document).ready(function(){
+        $('#showChooseImage').click(function () {
+            $('#myModal').on('shown.bs.modal', function (e) {
+                
+            })
+        });
+
+        $('#myModal').on('click', '.btn-primary', function(){
+            var value = $('#selectedImages').val();
+            $('#listImageUrl').val(value);
+            
+            $('#myModal').modal('hide');
+            var result = value.split(',');
+            $("#list-images-create").html("");
+            for (var i = 0; i < result.length; i++) {
+                $("#list-images-create").append('<li><img src="' + result[i] + '" alt="' + result[i] + '" /></li>');
+            }
+        });
+
+        
+    });
+    
+</script>
