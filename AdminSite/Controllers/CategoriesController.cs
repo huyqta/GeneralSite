@@ -183,12 +183,21 @@ namespace AdminSite.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetAllImageProduct()
+        public IActionResult GetAllProductImagesByCategory(string prefix)
         {
             GoogleApis ga = new GoogleApis(_configuration);
-            var images = ga.GetAllProductImages();
+            var images = ga.GetAllProductImagesByCategory(prefix);
             //var res = JsonConvert.SerializeObject(images);
             return Json(images);
+        }
+
+        [HttpPost]
+        public IActionResult GetAllCategories()
+        {
+            GoogleApis ga = new GoogleApis(_configuration);
+            var categories = ga.GetAllCategories();
+            //var res = JsonConvert.SerializeObject(images);
+            return Json(categories);
         }
     }
 

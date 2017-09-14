@@ -8,7 +8,16 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <ul id="list-images"></ul>
+                        <select id="list-categories" class="form-control">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul id="list-images" class="list-unstyled list-inline">
+                            
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -20,18 +29,50 @@
     </div>
 </div>
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#list-categories').on('change', function () {
+        var selected = $("#list-categories option:selected").val();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("GetAllImageProduct", "Categories")',
+            url: '@Url.Action("GetAllProductImagesByCategory", "Categories")',
+            data: { 'prefix': selected },
             success: function (result) {
-                console.log(result);
-                for (var i = 0; i < result.length; i++){
-                    $("#list-images").append('<li><a href="' + result[i].selfLink + '"><span class="tab">' + result[i].name + '</span></a></li>');
+                for (var i = 0; i < result.length; i++) {
+                    $("#list-images").html();
+                    $("#list-images").append('<li><img src="https://storage.googleapis.com/general-site/' + result[i].name + '" alt="' + result[i].name + '" width="50" height="50" /></li>');
                 }
             },
         });
     })
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetAllCategories", "Categories")',
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    $("#list-categories").html();
+                    $("#list-categories").append('<option value="' + result[i] + '"><span>' + RenameCategory(result[i]) + '</span></option>');
+                }
+            },
+        });
+    })
+
+    function RenameCategory(input) {
+        switch (input) {
+            case "shop-khh/category/ao-bhld/":
+                text = "Áo BHLD";
+                break;
+            case "shop-khh/category/mu-bhld/":
+                text = "Mũ BHLD";
+                break;
+            case "shop-khh/category/quan-bhld/":
+                text = "Quần BHLD";
+                break;
+            default:
+                text = "...";
+        }
+        return text;
+    }
     //$("#showChooseImage").on('click', function () {
     //    //setup modal
     //    $('#myModal').modal({

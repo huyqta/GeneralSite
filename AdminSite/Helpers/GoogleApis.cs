@@ -46,19 +46,52 @@ namespace AdminSite.Helpers
             return storage.GetObject(bucketName, fileName) != null;
         }
 
-        public List<Google.Apis.Storage.v1.Data.Object> GetAllProductImages()
+        public IList<Google.Apis.Storage.v1.Data.Object> GetAllProductImages()
         {
-            List<Google.Apis.Storage.v1.Data.Object> list = new List<Google.Apis.Storage.v1.Data.Object>();
             var storage = StorageClient.Create();
-            var listObject = storage.ListObjects(bucketName, "");
-            foreach (var obj in listObject)
+            
+            StorageService storageService = storage.Service;
+            ObjectsResource.ListRequest request = storageService.Objects.List(bucketName);
+            request.Delimiter = "/";
+            request.Prefix = "shop-khh/category/"; //delimiter is any sub-folder name. E.g : "2010/"
+            Google.Apis.Storage.v1.Data.Objects response = request.Execute();
+            if (response.Prefixes != null)
             {
-                if (obj.Name.Contains(Commons.ConstantUploadPath.CATEGORY))
-                {
-                    list.Add(obj);
-                }
+                return response.Items;
             }
-            return list;
+            return null;
+        }
+
+        public IList<Google.Apis.Storage.v1.Data.Object> GetAllProductImagesByCategory(string prefix)
+        {
+            var storage = StorageClient.Create();
+
+            StorageService storageService = storage.Service;
+            ObjectsResource.ListRequest request = storageService.Objects.List(bucketName);
+            request.Delimiter = "/";
+            request.Prefix = prefix; //delimiter is any sub-folder name. E.g : "2010/"
+            Google.Apis.Storage.v1.Data.Objects response = request.Execute();
+            if (response.Items != null)
+            {
+                return response.Items;
+            }
+            return null;
+        }
+
+        public IList<string> GetAllCategories()
+        {
+            var storage = StorageClient.Create();
+
+            StorageService storageService = storage.Service;
+            ObjectsResource.ListRequest request = storageService.Objects.List(bucketName);
+            request.Delimiter = "/";
+            request.Prefix = "shop-khh/category/"; //delimiter is any sub-folder name. E.g : "2010/"
+            Google.Apis.Storage.v1.Data.Objects response = request.Execute();
+            if (response.Prefixes != null)
+            {
+                return response.Prefixes;
+            }
+            return null;
         }
     }
 }
