@@ -5,53 +5,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
-<h4>Product</h4>
-<hr />
+<div class="bg-primary form-inline">
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="bg-primary text-uppercase">&nbsp;&nbsp; @Model.Name</h5>
+        </div>
+    </div>
+</div>
+<br />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <label asp-for="CategoryId" class="control-label">Danh mục sản phẩm</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Tên sản phẩm</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price" class="control-label">Giá bán</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <label asp-for="ImageUrl" class="control-label">Hình ảnh</label><br />
+                <!--<img src="@Model.ImageUrl" alt="@Model.Name" asp-append-version="true" height="300" width="300" />-->
+                <!--<input type="file" id="file" name="file" value="ImageUrl" class="form-control">-->
+                <button type="button" id="showChooseImage" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Chọn hình
+                </button>
+                <div>
+                    <ul id="list-images-create" class="list-unstyled list-inline"></ul>
+                </div>
+                <input asp-for="ImageUrl" type="hidden" id="listImageUrl" value="ImageUrl">
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <label asp-for="Description" class="control-label">Diễn giải</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UnitItem" class="control-label"></label>
-                <input asp-for="UnitItem" class="form-control" />
+                <label asp-for="UnitItem" class="control-label">Đơn vị tính</label>
+                <select asp-for="UnitItem" class="form-control" asp-items="ViewBag.Units"></select>
                 <span asp-validation-for="UnitItem" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-success">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@Html.Partial("~/Views/Shared/_ChooseImage.cshtml")
+<script>
+        tinymce.init({ selector: 'textarea' });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#showChooseImage').click(function () {
+            $('#myModal').on('shown.bs.modal', function (e) {
 
+            })
+        });
+
+        $('#myModal').on('click', '.btn-primary', function(){
+            var value = $('#selectedImages').val();
+            $('#listImageUrl').val(value);
+
+            $('#myModal').modal('hide');
+            var result = value.split(',');
+            $("#list-images-create").html("");
+            for (var i = 0; i < result.length; i++) {
+                $("#list-images-create").append('<li><img src="' + result[i] + '" alt="' + result[i] + '" /></li>');
+            }
+        });
+
+
+    });
+
+</script>

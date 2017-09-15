@@ -41,7 +41,6 @@ namespace AdminSite.Controllers
 
             var category = await _context.Category
                 .SingleOrDefaultAsync(m => m.Id == id);
-            category.Parent = _context.Category.Where(cat => cat.Id == category.ParentId).FirstOrDefault();
             if (category == null)
             {
                 return NotFound();
@@ -99,7 +98,6 @@ namespace AdminSite.Controllers
             ViewBag.Categories = listItems;
 
             var category = await _context.Category.SingleOrDefaultAsync(m => m.Id == id);
-
             if (category == null)
             {
                 return NotFound();

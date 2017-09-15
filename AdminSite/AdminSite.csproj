@@ -31,10 +31,6 @@
     <ProjectReference Include="..\Commons\Commons.csproj" />
     <ProjectReference Include="..\EntityModel\EntityModel.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\css\site.css" />
-  </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

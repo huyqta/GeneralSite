@@ -79,10 +79,10 @@ namespace AdminSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CategoryId,Name,Price,ImageUrl,Description,UnitItem")] Product product, IFormFile file)
         {
-            if (ModelState.IsValid && file != null && product.UnitItem != null)
+            if (ModelState.IsValid && product.UnitItem != null)
             {
-                GoogleApis ga = new GoogleApis(_configuration);
-                product.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.PRODUCT);
+                //GoogleApis ga = new GoogleApis(_configuration);
+                //product.ImageUrl = ga.UploadFile(file.FileName, file.ContentType, file.OpenReadStream(), Commons.ConstantUploadPath.PRODUCT);
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -98,7 +98,21 @@ namespace AdminSite.Controllers
             {
                 return NotFound();
             }
+            List<SelectListItem> listCategories = new List<SelectListItem>();
+            foreach (var cat in _context.Category)
+            {
+                if (cat.Id < 0) continue;
+                listCategories.Add(new SelectListItem() { Value = cat.Id.ToString(), Text = cat.Name });
+            }
+            ViewBag.Categories = listCategories;
 
+            List<SelectListItem> listUnits = new List<SelectListItem>();
+            var enumUnits = Enum.GetValues(typeof(Commons.Enums.UnitType));
+            foreach (var unit in enumUnits)
+            {
+                listUnits.Add(new SelectListItem() { Value = unit.ToString(), Text = unit.ToString() });
+            }
+            ViewBag.Units = listUnits;
             var product = await _context.Product.SingleOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {

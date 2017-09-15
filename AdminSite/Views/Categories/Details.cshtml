@@ -4,8 +4,8 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    #list-images-create li{
+@*<style>
+    #list-images-create li {
         height: 87px;
         width: 87px;
         border: 1px solid #242424;
@@ -14,15 +14,15 @@
         margin: 5px;
     }
 
-    #list-images-create li.selected{
-        background-color: dodgerblue;
-    }
+        #list-images-create li.selected {
+            background-color: dodgerblue;
+        }
 
-    #list-images-create li img{
-        height: 75px;
-        width: 75px;
-    }
-</style>
+        #list-images-create li img {
+            height: 75px;
+            width: 75px;
+        }
+</style>*@
 @Html.Partial("~/Views/Shared/_DetailHeader.cshtml", @Model.Name)
 <div>
     <dl class="row">
@@ -38,10 +38,10 @@
         <dd class="col-sm-10">
             <ul id="list-images-create" class="list-unstyled list-inline">
                 @foreach (var img in Model.ImageUrl.Split(","))
-				{
-				    <li><img src="@img" alt="@img" /></li>
-				}
-			</ul>
+                {
+                    <li><img src="@img" alt="@img" /></li>
+                }
+            </ul>
         <dt class="col-sm-2">
             Danh mục cha
         </dt>
@@ -59,8 +59,11 @@
             Diễn giải
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.Raw(Model.Description)
         </dd>
     </dl>
 </div>
 @Html.Partial("~/Views/Shared/_DetailFooter.cshtml", @Model.Id)
+<script>
+    tinymce.init({ selector: 'textarea' });
+</script>
