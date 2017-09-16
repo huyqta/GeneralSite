@@ -21,14 +21,30 @@ namespace EntityModel.Entity
 
         public int Description { get; set; }
 
-        public string EpubUrl { get; set; }
+        public string ISBN { get; set; }
 
-        public string PdfUrl { get; set; }
+        public string Year { get; set; }
 
-        public string WordUrl { get; set; }
+        public int Pages { get; set; }
 
-        public string PrcUrl { get; set; }
+        public string Language { get; set; }
 
+        public int FileSize { get; set; }
+        public string FileFormat { get; set; }
         public string ImageUrl { get; set; }
+        public string DownloadLink { get; set; }
+        public string MediaLink { get; set; }
+        public string ImageThumb { get; set; }
+        public string DateCRT { get; set; }
+        public int DownloadCount { get; set; }
+        public int ReadCount { get; set; }
+        public int SearchCount { get; set; }
+        public string Tag { get; set; }
+        public int SubjectId { get; set; }
+
+        [ForeignKey("SubjectId")]
+        public Subject Subject { get; set; }
+
+        public ICollection<Subject> Subjects { get; set; }
     }
 }
