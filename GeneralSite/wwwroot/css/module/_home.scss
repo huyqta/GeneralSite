@@ -1,6 +1,10 @@
-﻿body {
-    padding-top: 50px;
+﻿@import "base/url";
+@import "base/color";
+
+body {
+    padding-top: 70px;
     padding-bottom: 20px;
+    background: url($body-bg-pattern) repeat;
 }
 
 /* Wrapping element */
@@ -8,6 +12,8 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 15px;
+    background: $bg-section;
 }
 
 /* Carousel */
@@ -32,4 +38,9 @@
     .carousel-caption {
         display: none;
     }
+}
+
+.navbar-content {
+    height: 70px;
+    background: $bg-section;
 }
