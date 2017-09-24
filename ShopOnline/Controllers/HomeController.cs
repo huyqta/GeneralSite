@@ -63,5 +63,14 @@ namespace ShopOnline.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult Search(string value)
+        {
+            HomeViewModel model = new HomeViewModel();
+            model.ListCategory = _context.Category.Where(cat => cat.Id != -1).ToList();
+            model.ListProduct = _context.Product.Where(pro => pro.Name.Contains(value)).ToList();
+            return View(model);
+        }
     }
 }

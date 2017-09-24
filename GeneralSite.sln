@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commons", "Commons\Commons.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline", "ShopOnline\ShopOnline.csproj", "{45807807-D9A8-4D69-AE04-E9C9A5AC1DBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendTools", "BackendTools\BackendTools.csproj", "{D145E8EA-B127-4D9A-B1F5-2BE665089656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTools", "BackendTools\BackendTools.csproj", "{D145E8EA-B127-4D9A-B1F5-2BE665089656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

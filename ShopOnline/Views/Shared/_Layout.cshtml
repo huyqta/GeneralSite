@@ -19,92 +19,7 @@
     <link rel="icon" href="~/images/logo/logo.png">
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700,800,900" rel="stylesheet">
-    <style>
-        .static-navbar a {
-            color: #242424;
-            text-decoration: none;
-        }
-
-            .static-navbar a:hover {
-                color: rgba(36,36,36,0.65);
-                text-decoration: none;
-            }
-
-        .static-navbar li {
-            -webkit-box-shadow: inset 0px 0px 0px 0px rgba(36,36,36,0.65)000;
-            -moz-box-shadow: inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
-            box-shadow: inset inset 0px 0px 0px 0px rgba(36,36,36,0.65);
-            display: inline-block;
-            position: relative;
-            padding-bottom: 3px;
-            margin-right: 10px;
-            -webkit-transition: box-shadow 0.3s; /* Safari */
-            transition: box-shadow 0.3s;
-        }
-
-            .static-navbar li:hover {
-                -webkit-box-shadow: inset 0px -5px 0px 0px rgba(36,36,36,0.65);
-                -moz-box-shadow: inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
-                box-shadow: inset inset 0px -5px 0px 0px rgba(36,36,36,0.65);
-            }
-
-        .category-homepage {
-            height: 275px;
-            margin: 20px 0;
-        }
-
-            .category-homepage img {
-                height: 265px;
-                width: 265px;
-                padding: 2px;
-                border: 1px solid #d7d7d7;
-                transition: border 0.5s ease;
-            }
-
-                .category-homepage img:hover {
-                    border: 1px solid #242424;
-                }
-
-        .left-menu-item {
-            width: 100%;
-            border-bottom: 1px solid #8c8c8c;
-            padding: 5px 0;
-        }
-
-            .left-menu-item.active {
-                width: 100%;
-                border-bottom: 1px solid #242424;
-                padding: 7px 0;
-                color: #242424 !important;
-            }
-
-                .left-menu-item.active a {
-                    color: #242424 !important;
-                }
-
-            .left-menu-item a {
-                color: #8c8c8c;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-                .left-menu-item a:hover {
-                    color: #242424;
-                }
-
-        ul .left-menu-item.root-category:last-child, .information-block .left-menu-item:last-child, .list-new-product .left-menu-item:last-child {
-            border-bottom: none;
-        }
-
-        .new-product-price-label {
-            background-color: #fdd835;
-            max-width: 80px;
-            height: 20px;
-            padding: 5px 16px;
-            border-radius: 10px;
-            color: #242424;
-        }
-    </style>
+    
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
@@ -145,12 +60,14 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="input-group" id="searchbox" style="width: 80%; float: right; margin: 25px;">
-                            <input type="text" class="form-control" style="background-color: #f5f5f5;" placeholder="Search for..." aria-label="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn" type="button">Go!</button>
-                            </span>
-                        </div>
+                        <form asp-controller="home" asp-action="search" method="post" enctype="multipart/form-data">
+                            <div class="input-group" id="searchbox" style="width: 80%; float: right; margin: 25px;">
+                                <input name="value" id="searchinput" type="text" class="form-control" style="background-color: #f5f5f5;" placeholder="Search for..." aria-label="Search for...">
+                                <span class="input-group-btn">
+                                    <button id="searchbutton" class="btn" type="submit"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -158,16 +75,12 @@
         <div class="static-navbar">
             <div class="max-width-1200" style="margin: 0 auto;">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <ul class="list-inline static-navbar-table">
-                            @foreach (var category in Model.ListCategory.Where(cat => cat.ParentId == -1))
-                            {
-                                <li class="static-navbar-item">
-                                    <a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+                    @foreach (var category in Model.ListCategory.Take(12).Where(cat => cat.ParentId == -1))
+                    {
+                        <div class="col-md-1 static-navbar-item">
+                            <a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

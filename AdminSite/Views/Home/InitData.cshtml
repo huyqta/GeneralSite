@@ -1,0 +1,14 @@
+﻿@model List<EntityModel.Entity.Product>;
+
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Done!</p>
+
+@foreach (var cat in Model)
+{
+    <p>@cat.Name</p>
+}

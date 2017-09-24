@@ -1,4 +1,5 @@
-﻿using MySql.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data;
 using MySql.Data.MySqlClient;
 using System;
 using System.IO;
@@ -16,6 +17,9 @@ namespace BackendTools
             connection.ConnectionString = connectionString;
             connection.Open();
 
+            //DbContext context = new DbContext();
+            //context.
+
             var listcategory = File.ReadAllLines(@"C:/Users/HUYQTA/Desktop/category.txt");
             string insertCate = "INSERT INTO Category (Id, Name, ParentId, DateCRT) VALUES({0}, {1}, {2})";
             foreach (var line in listcategory)
@@ -25,7 +29,7 @@ namespace BackendTools
                 string ParentId = "-1";
                 string query = string.Format(insertCate, id, name, ParentId);
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                //cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
 
             
