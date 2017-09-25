@@ -39,12 +39,34 @@
             .category-product img:hover {
                 border: 1px solid #242424;
             }
+
+    .image-list-thumb {
+        margin-top: 10px;
+    }
+
+    .image-list-thumb-item {
+        height: 60px !important;
+        width: auto !important;
+        margin: 5px;
+    }
 </style>
 <div class="row">
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-4 category-product">
-                <img src="@Model.ActiveProduct.ImageUrl" alt="@Model.ActiveProduct.Name" />
+                <div class="row">
+                    <div class="col-md-12">
+                        @{ var imgUrl = !string.IsNullOrEmpty(Model.ActiveProduct.ImageUrl) ? Model.ActiveProduct.ImageUrl.Split(',')[0] : string.Empty; }
+                        <img id="main-image-product" src="@imgUrl" alt="@Model.ActiveProduct.Name" />
+                    </div>
+                    <div class="col-md-12 image-list-thumb">
+                        @foreach (var img in Model.ActiveProduct.ImageUrl.Split(','))
+                        {
+                            <img class="image-list-thumb-item" src="@img" alt="@Model.ActiveProduct.Name" />
+                        }
+                    </div>
+                </div>
+
             </div>
             <div class="col-sm-8">
                 <h3 style="font-weight: 700;margin: 15px 0;">@Model.ActiveProduct.Name</h3>
@@ -60,7 +82,12 @@
         <div class="row">
             <div class="col-sm-12">
                 @Html.Raw(Model.ActiveProduct.Description)
-                </div>
             </div>
         </div>
     </div>
+</div>
+<script>
+    $(".image-list-thumb-item").on("click", function (e) {
+        $("#main-image-product").attr("src", $(this).attr('src'));
+    })
+</script>

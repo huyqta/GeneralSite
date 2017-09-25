@@ -52,12 +52,12 @@
     var arrSelectedImage = new Array();
     $('#list-categories').on('change', function () {
         var selected = $("#list-categories option:selected").val();
+        $("#list-images").html('');
         $.ajax({
             type: 'POST',
             url: '@Url.Action("GetAllProductImagesByCategory", "Categories")',
             data: { 'prefix': selected },
             success: function (result) {
-	            $("#list-images").html();
                 for (var i = 0; i < result.length; i++) {
                     if (result[i].size > 0){
                         $("#list-images").append('<li onclick="selectImage(this)"><img src="https://storage.googleapis.com/general-site/' + result[i].name + '" alt="' + result[i].name + '" /></li>');
@@ -104,6 +104,21 @@
                 break;
             case "shop-khh/category/quan-bhld/":
                 text = "Quần BHLD";
+                break;
+            case "shop-khh/category/gang-tay-bhld/":
+                text = "Găng tay BHLD";
+                break;
+            case "shop-khh/category/giay-bhld/":
+                text = "Giày BHLD";
+                break;
+            case "shop-khh/category/day-phan-quang/":
+                text = "Dây phản quang";
+                break;
+            case "shop-khh/category/day-an-toan/":
+                text = "Dây an toàn";
+                break;
+            case "shop-khh/category/thiet-bi-cong-trinh/":
+                text = "Vật tư công trình";
                 break;
             default:
                 text = "...";

@@ -61,7 +61,8 @@
                         <p style="font-weight: 700;font-size: 16px; margin: 15px 0;">@pro.Name</p>
                     </a>-->
 				    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
-                        <img src="@pro.ImageUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
+                        @{ var imgUrl = !string.IsNullOrEmpty(pro.ImageUrl) ? pro.ImageUrl.Split(',')[0] : string.Empty; }
+                        <img src="@imgUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
                         <p style="text-align: left;font-weight: 700;font-size: 16px; margin: 15px 10px;">@pro.Name</p>
                     </a>
                     <p class="price-label" style="color: #242424;"><strong>Giá:</strong> Liên hệ</p>
