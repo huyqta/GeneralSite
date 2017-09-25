@@ -1,10 +1,103 @@
 ﻿@import "base/url";
 @import "base/color";
+@import "base/typography";
 
 body {
     padding-top: 70px;
     padding-bottom: 20px;
     background: url($body-bg-pattern) repeat;
+    font-family: $font-main;
+    color: #2e2e2e;
+}
+
+header {
+    padding: 0 20px 13px 20px;
+    margin-bottom: 25px;
+    background: $bg-section;
+}
+
+h1.navbar-brand_ {
+    margin: 0;
+    padding: 0;
+    float: left;
+    position: relative;
+    z-index: 1;
+    margin-top: 13px;
+    margin-right: 79px;
+}
+
+nav.tm_navbar {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+}
+
+nav.tm_navbar li {
+    float: left;
+    font-size: 14px;
+    line-height: 30px;
+    padding: 0;
+    position: relative;
+    margin-right: 12px;
+}
+
+nav.tm_navbar li.active > a {
+    color: #2e2e2e;
+    background: #f1f1f1;
+}
+
+nav.tm_navbar li a {
+    position: relative;
+    padding: 29px 17px 11px 16px;
+    text-transform: none;
+    font: 14px 'Open Sans';
+    color: #2e2e2e;
+    background: transparent;
+    letter-spacing: -1px;
+    line-height: 22px;
+    float: left;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+}
+
+.select-menu {
+    display: none !important;
+}
+
+.head_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: right;
+    margin-top: 25px;
+}
+
+.head_list li {
+    float: left;
+    margin-left: 11px;
+    line-height: 30px;
+}
+
+.head_list li a {
+    font: 14px 'Open Sans';
+    color: #2e2e2e;
+    padding: 5px 10px 6px 10px;
+    background: transparent;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+}
+
+a {
+    text-decoration: none;
+}
+
+.head_list li a:hover {
+    background: #12b980;
+    color: #ffffff;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
 }
 
 /* Wrapping element */
@@ -13,7 +106,6 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 15px;
-    background: $bg-section;
 }
 
 /* Carousel */
@@ -43,4 +135,27 @@ body {
 .navbar-content {
     height: 70px;
     background: $bg-section;
+}
+
+.section-background {
+    background: $bg-section;
+}
+
+.thumb-pad1 {
+    overflow: hidden;
+    padding: 6px 6px 17px 6px;
+    margin-bottom: 30px;
+    background: $bg-section;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.05);
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.05);
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+}
+
+.menuBox {
+    padding: 0;
+    position: relative;
+    z-index: 11;
+    float: left;
+    margin-bottom: 0;
 }
