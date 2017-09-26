@@ -3,11 +3,25 @@
     padding-bottom: 20px;
 }
 
+img {
+    background-image: url("https://storage.googleapis.com/general-site/shop-khh/default-img.gif");
+    background-size: cover;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.header-logo {
+    font-family: 'Oswald', sans-serif;
+    color: #f5f5f5;
+    display: inline-block;
+    /*background: -webkit-linear-gradient(#e2e2e2, #eeeeee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
 }
 
 a {
@@ -293,7 +307,7 @@ ul .left-menu-item.root-category:last-child, .information-block .left-menu-item:
 
     .carousel-mod .item img {
         height: 100%;
-        width: auto;
+        width: 100%;
     }
 
 

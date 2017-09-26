@@ -1,4 +1,5 @@
-﻿@model HomeViewModel;
+﻿@using LanguagePack;
+@model HomeViewModel;
 @{
     ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -28,28 +29,15 @@
         padding: 15px 0;
     }
 </style>
-@*<div class="list-category">
-    <div class="max-width-1200" style="margin: 0 auto;">
-        <div class="row">
-            @foreach (var category in Model.ListCategory.Where(cat => cat.ParentId == -1))
-            {
-                <div class="col-sm-4">
-                    <div class="list-category-item">
-                        <a class="text-dark" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id"><h4>@category.Name</h4></a>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>*@
 <div class="container-fluid max-width-1200" style="margin-bottom: 75px;">
     <h4 style="color: black; font-weight: 700; text-align: left; margin-left: 20px;">Sản phẩm mới</h4>
     <div class="row">
-        @foreach (var pro in Model.ListProduct.OrderByDescending(lst=>lst.DateCRT).Take(9).ToList())
+        @foreach (var pro in Model.ListProduct.OrderBy(lst=>lst.DateCRT).Take(9).ToList())
         {
             <div class="col-sm-4 category-homepage">
 			    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
-                    <img src="@pro.ImageUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
+                    @{ var imgUrl = !string.IsNullOrEmpty(pro.ImageUrl) ? pro.ImageUrl.Split(',')[0] : LanguageManager.GetCommonUrl("DefaultImage"); }
+                    <img src="@imgUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
                     <p style="text-align: center;font-weight: 700;font-size: 16px; margin-top: 5px;">@pro.Name</p>
 				</a>
                 <p class="price-label-home" style="color: #242424;margin: 0 auto;"><strong>Giá:</strong> Liên hệ</p>

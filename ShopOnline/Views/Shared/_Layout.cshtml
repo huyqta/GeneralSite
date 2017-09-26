@@ -19,11 +19,11 @@
     <link rel="icon" href="~/images/logo/logo.png">
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,700,800,900" rel="stylesheet">
-    
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
-<body style="padding-top: 185px;">
+<body style="padding-top: 188px;">
     <div id="fb-root"></div>
     @*/ Script for facebook plugin /*@
     <script>
@@ -46,18 +46,10 @@
                 </button>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="media" style="height: 95px;">
-                            <div class="media-left media-middle">
-                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                    <img src="~/images/logo/logo.png" alt="Kim Huy Hoang" width="55" height="55" />
-                                </a>
-                            </div>
-                            <div class="media-body media-middle" style="font-family: 'Oswald', sans-serif; color: #383838;">
-                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                    <h3 class="media-heading"><strong>KIM HUY HOÀNG</strong></h3>
-                                </a>
-                            </div>
-                        </div>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" style="width: 300px; display: inline-block;">
+                            <img src="~/images/logo/logo_white_bg.png" alt="Kim Huy Hoang" width="75" height="75" style="background-image: none; display: inline-block; margin: 15px 0;" />
+                            <h3 class="header-logo"><strong><u>KIM HUY HOÀNG</u></strong></h3>
+                        </a>
                     </div>
                     <div class="col-sm-6">
                         <form asp-controller="home" asp-action="search" method="post" enctype="multipart/form-data">
@@ -164,11 +156,12 @@
                     @* NEW PRODUCT *@
                     <h4 style="border-bottom: 1px solid #242424; padding-bottom: 10px;"><strong>Sản phẩm mới</strong></h4>
                     <ul class="list-unstyled list-new-product">
-                        @foreach (var pro in Model.ListProduct.OrderByDescending(prd => prd.DateCRT).Take(5))
+                        @foreach (var pro in Model.ListProduct.OrderBy(prd => prd.DateCRT).Take(5))
                         {
                             <li class="left-menu-item">
                                 <div class="media" style="display: inline-flex;">
-                                    <img class="d-flex align-self-start mr-3" src="@pro.ImageUrl" alt="@pro.Name" height="93" width="93">
+                                    @{ var imgUrl = !string.IsNullOrEmpty(pro.ImageUrl) ? pro.ImageUrl.Split(',')[0] : string.Empty; }
+                                    <img class="d-flex align-self-start mr-3" src="@imgUrl" alt="@pro.Name" height="93" width="93">
                                     <div class="media-body" style="margin-left: 15px; color: #8c8c8c">
                                         <h5 class="mt-0" style="margin-top: 0;color: #242424;"><strong>@pro.Name</strong></h5>
                                         <!--@Html.Raw(pro.Description)-->
@@ -183,7 +176,7 @@
                                     </div>
                                 </div>
                             </li>
-                        }
+                                        }
                     </ul>
                 </div>
                 <div class="col-sm-9">

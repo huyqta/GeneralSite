@@ -43,7 +43,7 @@
                 <div>
                     <ul id="list-images-create" class="list-unstyled list-inline"></ul>
                 </div>
-                <input asp-for="ImageUrl" type="hidden" id="listImageUrl" value="ImageUrl">
+                <input asp-for="ImageUrl" name="ImageUrl" type="hidden" id="listImageUrl">
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label">Diễn giải</label>
@@ -65,29 +65,37 @@
 
 @Html.Partial("~/Views/Shared/_ChooseImage.cshtml")
 <script>
-        tinymce.init({ selector: 'textarea' });
+    tinymce.init({ selector: 'textarea' });
 </script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#showChooseImage').click(function () {
             $('#myModal').on('shown.bs.modal', function (e) {
 
             })
         });
 
-        $('#myModal').on('click', '.btn-primary', function(){
+        $('#myModal').on('click', '.btn-primary', function () {
             var value = $('#selectedImages').val();
             $('#listImageUrl').val(value);
-
             $('#myModal').modal('hide');
             var result = value.split(',');
-            $("#list-images-create").html("");
-            for (var i = 0; i < result.length; i++) {
-                $("#list-images-create").append('<li><img src="' + result[i] + '" alt="' + result[i] + '" /></li>');
+            if (result.length > 0) {
+                RenderImage(result);
             }
         });
 
-
+        var result = $('#listImageUrl').val().split(',');
+        if (result.length > 0) {
+            RenderImage(result);
+        }
     });
+
+    function RenderImage(result) {
+        $("#list-images-create").html("");
+        for (var i = 0; i < result.length; i++) {
+            $("#list-images-create").append('<li><img src="' + result[i] + '" alt="' + result[i] + '" /></li>');
+        }
+    }
 
 </script>

@@ -1,4 +1,5 @@
-﻿@model HomeViewModel;
+﻿@using LanguagePack;
+@model HomeViewModel;
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
     
 </head>
 
-<body style="padding-top: 177px;">
+<body style="padding-top: 188px;">
     <div id="fb-root"></div>
     @*/ Script for facebook plugin /*@
     <script>
@@ -63,18 +64,10 @@
                 </button>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="media" style="height: 95px;">
-                            <div class="media-left media-middle">
-                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                    <img src="~/images/logo/logo.png" alt="Kim Huy Hoang" width="55" height="55" />
-                                </a>
-                            </div>
-                            <div class="media-body media-middle" style="font-family: 'Oswald', sans-serif; color: #383838;">
-                                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                    <h3 class="media-heading"><strong>KIM HUY HOÀNG</strong></h3>
-                                </a>
-                            </div>
-                        </div>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" style="width: 330px; display: inline-block;">
+                            <img src="~/images/logo/logo_white_bg.png" alt="Kim Huy Hoang" width="75" height="75" style="background-image: none; display: inline-block; margin: 15px 0;" />
+                            <h3 class="header-logo"><strong>&nbsp;KIM HUY HOÀNG</strong></h3>
+                        </a>
                     </div>
                     <div class="col-sm-6">
                         <form asp-controller="home" asp-action="search" method="post" enctype="multipart/form-data">

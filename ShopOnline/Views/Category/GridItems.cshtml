@@ -1,4 +1,5 @@
-﻿@model HomeViewModel
+﻿@using LanguagePack;
+@model HomeViewModel
 <style>
     .price-label {
         width: 200px;
@@ -54,16 +55,10 @@
             @foreach (var pro in Model.ListProductPaging)
             {
                 <div class="col-sm-4 category-product">
-                    <!--<a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
-                        <img src="@pro.ImageUrl" alt="@pro.Name" />
-                    </a>
-                    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
-                        <p style="font-weight: 700;font-size: 16px; margin: 15px 0;">@pro.Name</p>
-                    </a>-->
 				    <a asp-controller="Product" asp-action="Index" asp-route-id="@pro.Id">
-                        @{ var imgUrl = !string.IsNullOrEmpty(pro.ImageUrl) ? pro.ImageUrl.Split(',')[0] : string.Empty; }
+                        @{ var imgUrl = !string.IsNullOrEmpty(pro.ImageUrl) ? pro.ImageUrl.Split(',')[0] : LanguageManager.GetCommonUrl("DefaultImage"); }
                         <img src="@imgUrl" style="margin: 0 auto; display: block;" alt="@pro.Name" />
-                        <p style="text-align: left;font-weight: 700;font-size: 16px; margin: 15px 10px;">@pro.Name</p>
+                        <p style="text-align: left;font-weight: 700;font-size: 16px; margin: 15px 10px; min-height: 44px;">@pro.Name</p>
                     </a>
                     <p class="price-label" style="color: #242424;"><strong>Giá:</strong> Liên hệ</p>
                 </div>

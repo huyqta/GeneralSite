@@ -1,4 +1,5 @@
-﻿@model HomeViewModel
+﻿@using LanguagePack;
+@model HomeViewModel
 @{
     ViewData["Title"] = Model.ActiveProduct.Name;
 }
@@ -56,13 +57,16 @@
             <div class="col-sm-4 category-product">
                 <div class="row">
                     <div class="col-md-12">
-                        @{ var imgUrl = !string.IsNullOrEmpty(Model.ActiveProduct.ImageUrl) ? Model.ActiveProduct.ImageUrl.Split(',')[0] : string.Empty; }
+                        @{ var imgUrl = !string.IsNullOrEmpty(Model.ActiveProduct.ImageUrl) ? Model.ActiveProduct.ImageUrl.Split(',')[0] : LanguageManager.GetCommonUrl("DefaultImage"); }
                         <img id="main-image-product" src="@imgUrl" alt="@Model.ActiveProduct.Name" />
                     </div>
                     <div class="col-md-12 image-list-thumb">
-                        @foreach (var img in Model.ActiveProduct.ImageUrl.Split(','))
+                        @if (!string.IsNullOrEmpty(Model.ActiveProduct.ImageUrl))
                         {
-                            <img class="image-list-thumb-item" src="@img" alt="@Model.ActiveProduct.Name" />
+                            @foreach (var img in Model.ActiveProduct.ImageUrl.Split(','))
+                            {
+                                <img class="image-list-thumb-item" src="@img" alt="@Model.ActiveProduct.Name" />
+                            }
                         }
                     </div>
                 </div>
