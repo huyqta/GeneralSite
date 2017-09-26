@@ -14,15 +14,27 @@ namespace ShopOnline
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
-        }
+            //BuildWebHost(args).Run();
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hosting.json", optional: true)
+                .Build();
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            var host = new WebHostBuilder()
+                .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseUrls("http://*:5003")
                 .Build();
     }
 }

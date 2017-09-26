@@ -34,19 +34,20 @@ namespace GeneralSite
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                //.UseUrls("http://*:5000")
+                .UseUrls("http://*:5002")
                 .Build();
 
-		/// Some notes:
-		/// 1. Copy folder to server by SSH:
-		///    > scp -r /Users/huyquan/Projects/huyqta/GeneralSite.git/GeneralSite/bin/Release/PublishOutput/ root@128.199.210.158:/root/deploy/
-		/// 2. Recover SSH:
-		///    > eval `ssh-agent -s`
-		///    > ssh-add /Users/huyquan/sshmac
+        /// Some notes:
+        /// 1. Copy folder to server by SSH:
+        ///    > scp -r /Users/huyquan/Projects/huyqta/GeneralSite.git/GeneralSite/bin/Release/PublishOutput/ root@128.199.210.158:/root/deploy/
+        ///    > scp -r C:\Users\Welcome\Documents\Visual Studio 2017\Projects\GeneralSite\AdminSite\bin\Release\PublishOutput root@128.199.210.158:/root/deploy/Admin
+        /// 2. Recover SSH:
+        ///    > eval `ssh-agent -s`
+        ///    > ssh-add /Users/huyquan/sshmac
         /// 3. Kill process by running on port 80 (Example): Sometimes, you cannot start the nginx because of the port was exist.
-		///    > sudo fuser -k 80/tcp
+        ///    > sudo fuser -k 80/tcp
         /// Nginx: 80
         /// Apaches: 8080
         /// Jenkins: 9999
-	}
+    }
 }
