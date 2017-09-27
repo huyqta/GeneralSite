@@ -26,6 +26,7 @@ namespace ShopOnline
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                //.UseUrls("http://*:5003")
                 .Build();
 
             host.Run();
@@ -34,7 +35,7 @@ namespace ShopOnline
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5003")
+                //.UseUrls("http://*:5003")
                 .Build();
     }
 }

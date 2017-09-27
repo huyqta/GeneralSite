@@ -26,7 +26,8 @@ namespace AdminSite
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseIISIntegration()
 				.UseStartup<Startup>()
-				.Build();
+                .UseUrls("http://*:5001")
+                .Build();
 
 			host.Run();
         }
