@@ -24,7 +24,7 @@ namespace AdminSite
 				.UseConfiguration(config)
 				.UseKestrel()
 				.UseContentRoot(Directory.GetCurrentDirectory())
-				.UseIISIntegration()
+				//.UseIISIntegration()
 				.UseStartup<Startup>()
                 .UseUrls("http://*:5001")
                 .Build();

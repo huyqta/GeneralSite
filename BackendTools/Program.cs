@@ -11,15 +11,17 @@ namespace BackendTools
 
         static void Main(string[] args)
         {
+            MySqlConnection connection = new MySqlConnection();
             try
             {
-                MySqlConnection connection = new MySqlConnection();
-                string connectionString = "Server=128.199.64.249;Port=3306;Database=generaldb;Uid=huyquan;Pwd=sql;SslMode=None";
+                string connectionString = "Server=128.199.64.249;Port=3306;Database=generaldb;Uid=huyquan;Pwd=sql";
                 connection.ConnectionString = connectionString;
                 Console.WriteLine(connection.DataSource);
                 Console.WriteLine(connection.Database);
                 Console.WriteLine(connection.ConnectionString);
                 connection.Open();
+                Console.WriteLine("Opened! Press Enter to close!");
+                Console.ReadLine();
             }
 
             catch (Exception ex)
@@ -27,24 +29,16 @@ namespace BackendTools
                 Console.WriteLine(ex.InnerException);
                 Console.ReadLine();
             }
-            //Console.WriteLine("Hello World!");
 
-
-            //DbContext context = new DbContext();
-            //context.
-
-            //var listcategory = File.ReadAllLines(@"C:/Users/HUYQTA/Desktop/category.txt");
-            //string insertCate = "INSERT INTO Category (Id, Name, ParentId, DateCRT) VALUES({0}, {1}, {2})";
-            //foreach (var line in listcategory)
-            //{
-            //    string id = line.Split('\t')[0];
-            //    string name = line.Split('\t')[1];
-            //    string ParentId = "-1";
-            //    string query = string.Format(insertCate, id, name, ParentId);
-            //    MySqlCommand cmd = new MySqlCommand(query, connection);
-            //    cmd.ExecuteNonQuery();
-            //}
-
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                    Console.WriteLine("MySQL has been closed!");
+                }
+                
+            }
 
         }
     }
